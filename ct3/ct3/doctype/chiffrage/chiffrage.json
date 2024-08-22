@@ -1,0 +1,146 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-08-22 12:14:27.315014",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "com_tab",
+  "com_intervenant",
+  "section_break_6s6d",
+  "chiffre_daffaire",
+  "column_break_5qdv",
+  "region_dactivit\u00e9",
+  "tech_tab",
+  "tech_intervenant",
+  "section_break_tc3c",
+  "equipment",
+  "column_break_67tv",
+  "services",
+  "column_break_0lbo",
+  "hardware",
+  "boq_tab",
+  "boq_plus_tab",
+  "four_tab",
+  "pose_tab",
+  "pf_tab"
+ ],
+ "fields": [
+  {
+   "fieldname": "com_tab",
+   "fieldtype": "Tab Break",
+   "label": "COM"
+  },
+  {
+   "fieldname": "com_intervenant",
+   "fieldtype": "Link",
+   "label": "Intervenant",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "section_break_6s6d",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "chiffre_daffaire",
+   "fieldtype": "Text",
+   "label": "Chiffre d'affaire"
+  },
+  {
+   "fieldname": "column_break_5qdv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "region_dactivit\u00e9",
+   "fieldtype": "Text",
+   "label": "Region d'activit\u00e9"
+  },
+  {
+   "fieldname": "tech_tab",
+   "fieldtype": "Tab Break",
+   "label": "TECH"
+  },
+  {
+   "fieldname": "tech_intervenant",
+   "fieldtype": "Link",
+   "label": "Intervenant",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "boq_tab",
+   "fieldtype": "Tab Break",
+   "label": "BOQ"
+  },
+  {
+   "fieldname": "boq_plus_tab",
+   "fieldtype": "Tab Break",
+   "label": "BOQ_PLUS"
+  },
+  {
+   "fieldname": "four_tab",
+   "fieldtype": "Tab Break",
+   "label": "FOUR"
+  },
+  {
+   "fieldname": "pose_tab",
+   "fieldtype": "Tab Break",
+   "label": "POSE"
+  },
+  {
+   "fieldname": "pf_tab",
+   "fieldtype": "Tab Break",
+   "label": "PF"
+  },
+  {
+   "fieldname": "section_break_tc3c",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "equipment",
+   "fieldtype": "Text",
+   "label": "Equipment"
+  },
+  {
+   "fieldname": "column_break_67tv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "services",
+   "fieldtype": "Text",
+   "label": "Services"
+  },
+  {
+   "fieldname": "hardware",
+   "fieldtype": "Text",
+   "label": "Hardware"
+  },
+  {
+   "fieldname": "column_break_0lbo",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-08-22 12:22:41.742832",
+ "modified_by": "Administrator",
+ "module": "ct3",
+ "name": "Chiffrage",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
