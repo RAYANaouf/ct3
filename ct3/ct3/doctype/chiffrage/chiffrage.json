@@ -6,6 +6,7 @@
  "engine": "InnoDB",
  "field_order": [
   "com_tab",
+  "general",
   "section_de_projet_section",
   "responsable_du_projet",
   "column_break_boff",
@@ -27,19 +28,55 @@
   "section_break_flkd",
   "type_de_prix",
   "column_break_n28y",
-  "tech_tab",
-  "tech_intervenant",
-  "section_break_tc3c",
-  "equipment",
-  "column_break_67tv",
-  "services",
-  "column_break_0lbo",
-  "hardware",
-  "boq_tab",
-  "boq_plus_tab",
-  "four_tab",
-  "pose_tab",
-  "pf_tab"
+  "prix_ferme_ou_r\u00e9visable",
+  "section_break_nphh",
+  "offre_type",
+  "column_break_sksg",
+  "offre",
+  "spaceholder1",
+  "offre_valable_jusquau",
+  "section_break_onar",
+  "situation_financi\u00e8re",
+  "section_break_boc8",
+  "la_situation_financi\u00e8re_du_client",
+  "column_break_busx",
+  "garantie_de_paiement_demand\u00e9e_par_3ct",
+  "section_break_5wou",
+  "consultation",
+  "section_break_g0vb",
+  "type_de_consultation",
+  "column_break_vvtq",
+  "esp\u00e9rance_de_succ\u00e9s",
+  "column_break_djvh",
+  "concurrence_potentielle",
+  "section_break_zjnv",
+  "info_commerciales",
+  "section_break_jmvs",
+  "exp\u00e9rience_pass\u00e9e_avec_le_client_direct",
+  "column_break_uf3n",
+  "exp\u00e9rience_pass\u00e9e_avec_lingenieur_conseil_du_client",
+  "section_de_p\u00e9riode_section",
+  "pour_la_p\u00e9riode_de_n\u00e9gociation_de_loffre",
+  "column_break_hzqj",
+  "pour_la_p\u00e9riode_de_r\u00e9alisation",
+  "section_break_ndet",
+  "d\u00e9cideurs_rencontr\u00e9s",
+  "column_break_lqqm",
+  "contacts_avec_ling\u00e9nieur_conseil_du_client",
+  "column_break_xwnb",
+  "client_est_il_assur\u00e9_davoir_sa_propre_commande",
+  "column_break_fdpk",
+  "estimation_du_budget_client",
+  "section_break_panj",
+  "crit\u00e8res_de_d\u00e9cision_du_client",
+  "column_break_wvxv",
+  "avantage_technique_de_notre_offre",
+  "column_break_xylg",
+  "les_variantes_pour_satisfaire_les_crit\u00e8res_et_le_budget",
+  "section_break_doc1",
+  "autres_atouts_\u00e0_mettre_en_valeur",
+  "column_break_bkva",
+  "handicap_\u00e9ventuel"
  ],
  "fields": [
   {
@@ -60,69 +97,6 @@
    "fieldname": "region_dactivit\u00e9",
    "fieldtype": "Text",
    "label": "Description des fournitures et prestations"
-  },
-  {
-   "fieldname": "tech_tab",
-   "fieldtype": "Tab Break",
-   "label": "TECH"
-  },
-  {
-   "fieldname": "tech_intervenant",
-   "fieldtype": "Link",
-   "label": "Intervenant",
-   "options": "Employee"
-  },
-  {
-   "fieldname": "boq_tab",
-   "fieldtype": "Tab Break",
-   "label": "BOQ"
-  },
-  {
-   "fieldname": "boq_plus_tab",
-   "fieldtype": "Tab Break",
-   "label": "BOQ_PLUS"
-  },
-  {
-   "fieldname": "four_tab",
-   "fieldtype": "Tab Break",
-   "label": "FOUR"
-  },
-  {
-   "fieldname": "pose_tab",
-   "fieldtype": "Tab Break",
-   "label": "POSE"
-  },
-  {
-   "fieldname": "pf_tab",
-   "fieldtype": "Tab Break",
-   "label": "PF"
-  },
-  {
-   "fieldname": "section_break_tc3c",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "equipment",
-   "fieldtype": "Text",
-   "label": "Equipment"
-  },
-  {
-   "fieldname": "column_break_67tv",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "services",
-   "fieldtype": "Text",
-   "label": "Services"
-  },
-  {
-   "fieldname": "hardware",
-   "fieldtype": "Text",
-   "label": "Hardware"
-  },
-  {
-   "fieldname": "column_break_0lbo",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "business__unit\u00e9",
@@ -210,11 +184,253 @@
    "fieldname": "section_de_projet_section",
    "fieldtype": "Section Break",
    "label": "Section de Projet"
+  },
+  {
+   "fieldname": "prix_ferme_ou_r\u00e9visable",
+   "fieldtype": "Select",
+   "label": "Prix ferme ou r\u00e9visable",
+   "options": "Prix ferme\nPrix r\u00e9visable"
+  },
+  {
+   "fieldname": "offre_type",
+   "fieldtype": "Select",
+   "label": "Offre Type",
+   "options": "Taux\nMontant"
+  },
+  {
+   "fieldname": "offre",
+   "fieldtype": "Currency",
+   "label": "Offre"
+  },
+  {
+   "fieldname": "column_break_sksg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "spaceholder1",
+   "fieldtype": "Column Break",
+   "options": "<dir><p>ow</p></dir>"
+  },
+  {
+   "fieldname": "offre_valable_jusquau",
+   "fieldtype": "Date",
+   "label": " Offre valable jusqu'au"
+  },
+  {
+   "fieldname": "section_break_nphh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_onar",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "situation_financi\u00e8re",
+   "fieldtype": "HTML",
+   "label": "Situation Financi\u00e8re ",
+   "options": "<div style=\"text-align: center;\">\n  <h1>Situation Financi\u00e8re</h1>\n</div>"
+  },
+  {
+   "fieldname": "general",
+   "fieldtype": "HTML",
+   "label": "general",
+   "options": "<div style=\"text-align: center;\">\n   <h1> General </h1>\n</div>"
+  },
+  {
+   "description": "La situation financi\u00e8re du client a \u00e9t\u00e9 v\u00e9rifi\u00e9e par la direction financi\u00e8re ?\n(Limite de cr\u00e9dit obtenue aupr\u00e8s d'Atradius ou cr\u00e9dit rating aupr\u00e9s d'un autre organisme, exp\u00e9rience pass\u00e9e sur la ponctualit\u00e9 des payements )",
+   "fieldname": "la_situation_financi\u00e8re_du_client",
+   "fieldtype": "Text",
+   "label": "La situation financi\u00e8re du client "
+  },
+  {
+   "fieldname": "column_break_busx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "(Paiement direct, garantie bancaire, Lettre de cr\u00e9dit, garantie maison m\u00e8re, ...)",
+   "fieldname": "garantie_de_paiement_demand\u00e9e_par_3ct",
+   "fieldtype": "Text",
+   "label": "Garantie de paiement demand\u00e9e par 3CT"
+  },
+  {
+   "fieldname": "section_break_boc8",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_5wou",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "consultation",
+   "fieldtype": "HTML",
+   "label": "Consultation",
+   "options": "<div style=\"text-align: center;\">\n  <h1>Consultation</h1>\n</div>"
+  },
+  {
+   "fieldname": "section_break_g0vb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "type_de_consultation",
+   "fieldtype": "Text",
+   "label": "Type de consultation"
+  },
+  {
+   "fieldname": "column_break_vvtq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "esp\u00e9rance_de_succ\u00e9s",
+   "fieldtype": "Data",
+   "label": "Esp\u00e9rance de succ\u00e9s"
+  },
+  {
+   "fieldname": "column_break_djvh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "concurrence_potentielle",
+   "fieldtype": "Data",
+   "label": "Concurrence potentielle"
+  },
+  {
+   "fieldname": "section_break_zjnv",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "info_commerciales",
+   "fieldtype": "HTML",
+   "label": "Info Commerciales",
+   "options": "<div style=\"text-align: center;\">\n  <h1>Info Commerciales</h1>\n</div>"
+  },
+  {
+   "fieldname": "section_break_jmvs",
+   "fieldtype": "Section Break"
+  },
+  {
+   "description": "Pr\u00e9ciser les affaires r\u00e9alis\u00e9es: prestations, marge, attitude constractuelle (avenant obtenus), approbation des plans, des fournisseurs, coordination, ...)",
+   "fieldname": "exp\u00e9rience_pass\u00e9e_avec_le_client_direct",
+   "fieldtype": "Text",
+   "label": "Exp\u00e9rience pass\u00e9e avec le client direct"
+  },
+  {
+   "fieldname": "column_break_uf3n",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Pr\u00e9ciser les affaires r\u00e9alis\u00e9es: prestations, marge, attitude constractuelle (avenant obtenus), approbation des plans, des fournisseurs, coordination, ...)",
+   "fieldname": "exp\u00e9rience_pass\u00e9e_avec_lingenieur_conseil_du_client",
+   "fieldtype": "Data",
+   "label": "Exp\u00e9rience pass\u00e9e avec l'ingenieur conseil du client "
+  },
+  {
+   "fieldname": "section_de_p\u00e9riode_section",
+   "fieldtype": "Section Break",
+   "label": "section de p\u00e9riode"
+  },
+  {
+   "fieldname": "pour_la_p\u00e9riode_de_n\u00e9gociation_de_loffre",
+   "fieldtype": "Data",
+   "label": "Pour la p\u00e9riode de n\u00e9gociation de l'offre"
+  },
+  {
+   "fieldname": "column_break_hzqj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pour_la_p\u00e9riode_de_r\u00e9alisation",
+   "fieldtype": "Data",
+   "label": "Pour la p\u00e9riode de r\u00e9alisation"
+  },
+  {
+   "fieldname": "section_break_ndet",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "d\u00e9cideurs_rencontr\u00e9s",
+   "fieldtype": "Data",
+   "label": "D\u00e9cideurs rencontr\u00e9s"
+  },
+  {
+   "fieldname": "column_break_lqqm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contacts_avec_ling\u00e9nieur_conseil_du_client",
+   "fieldtype": "Data",
+   "label": "Contacts avec l'ing\u00e9nieur conseil du client"
+  },
+  {
+   "fieldname": "column_break_xwnb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "client_est_il_assur\u00e9_davoir_sa_propre_commande",
+   "fieldtype": "Select",
+   "label": "Client est il assur\u00e9 d'avoir sa propre commande?",
+   "options": "Oui\nNo"
+  },
+  {
+   "fieldname": "column_break_fdpk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "estimation_du_budget_client",
+   "fieldtype": "Data",
+   "label": "Estimation du budget client"
+  },
+  {
+   "fieldname": "section_break_panj",
+   "fieldtype": "Section Break"
+  },
+  {
+   "description": "(Contenu technique, fournisseurs impos\u00e9s, d\u00e9lais, r\u00e9f\u00e9rences ...).\n",
+   "fieldname": "crit\u00e8res_de_d\u00e9cision_du_client",
+   "fieldtype": "Text",
+   "label": "Crit\u00e8res de d\u00e9cision du client"
+  },
+  {
+   "fieldname": "column_break_wvxv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "avantage_technique_de_notre_offre",
+   "fieldtype": "Text",
+   "label": "Avantage technique de notre offre"
+  },
+  {
+   "fieldname": "column_break_xylg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Quelle sont les variantes propos\u00e9es pour satisfaire les crit\u00e8res et le budget du client?\n",
+   "fieldname": "les_variantes_pour_satisfaire_les_crit\u00e8res_et_le_budget",
+   "fieldtype": "Text",
+   "label": "les variantes pour satisfaire les crit\u00e8res et le budget "
+  },
+  {
+   "fieldname": "section_break_doc1",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "autres_atouts_\u00e0_mettre_en_valeur",
+   "fieldtype": "Text",
+   "label": "Autres atouts \u00e0 mettre en valeur"
+  },
+  {
+   "fieldname": "column_break_bkva",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "(Technique, commercial, ...).\n",
+   "fieldname": "handicap_\u00e9ventuel",
+   "fieldtype": "Text",
+   "label": "Handicap \u00e9ventuel"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-22 14:01:11.375105",
+ "modified": "2024-08-22 15:21:54.191520",
  "modified_by": "Administrator",
  "module": "ct3",
  "name": "Chiffrage",
