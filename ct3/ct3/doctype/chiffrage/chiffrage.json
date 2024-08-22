@@ -6,7 +6,8 @@
  "engine": "InnoDB",
  "field_order": [
   "com_tab",
-  "com_intervenant",
+  "section_de_projet_section",
+  "responsable_du_projet",
   "column_break_boff",
   "tel",
   "section_break_6s6d",
@@ -14,9 +15,18 @@
   "column_break_nt2l",
   "autres_unit\u00e9s",
   "column_break_ea7l",
-  "chiffre_daffaire",
+  "client_priv\u00e9",
+  "column_break_zekt",
+  "pays",
+  "column_break_evon",
+  "ing\u00e9nieur_conseil_du_client",
+  "section_break_caao",
+  "d\u00e9signation_de_laffaire",
   "column_break_5qdv",
   "region_dactivit\u00e9",
+  "section_break_flkd",
+  "type_de_prix",
+  "column_break_n28y",
   "tech_tab",
   "tech_intervenant",
   "section_break_tc3c",
@@ -38,19 +48,9 @@
    "label": "COM"
   },
   {
-   "fieldname": "com_intervenant",
-   "fieldtype": "Link",
-   "label": "Responsable du projet",
-   "options": "Employee"
-  },
-  {
    "fieldname": "section_break_6s6d",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "chiffre_daffaire",
-   "fieldtype": "Text",
-   "label": "Chiffre d'affaire"
+   "fieldtype": "Section Break",
+   "label": "Section d'Unit\u00e9"
   },
   {
    "fieldname": "column_break_5qdv",
@@ -59,7 +59,7 @@
   {
    "fieldname": "region_dactivit\u00e9",
    "fieldtype": "Text",
-   "label": "Region d'activit\u00e9"
+   "label": "Description des fournitures et prestations"
   },
   {
    "fieldname": "tech_tab",
@@ -140,7 +140,8 @@
   },
   {
    "fieldname": "column_break_ea7l",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Section d'Unit\u00e9"
   },
   {
    "fieldname": "column_break_boff",
@@ -150,11 +151,70 @@
    "fieldname": "tel",
    "fieldtype": "Phone",
    "label": "Tel"
+  },
+  {
+   "fieldname": "client_priv\u00e9",
+   "fieldtype": "Data",
+   "label": "Client priv\u00e9"
+  },
+  {
+   "fieldname": "column_break_zekt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pays",
+   "fieldtype": "Data",
+   "label": "Pays"
+  },
+  {
+   "fieldname": "section_break_caao",
+   "fieldtype": "Section Break",
+   "label": "Section de D\u00e9signation "
+  },
+  {
+   "fieldname": "column_break_evon",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ing\u00e9nieur_conseil_du_client",
+   "fieldtype": "Link",
+   "label": "Ing\u00e9nieur conseil du client",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "responsable_du_projet",
+   "fieldtype": "Link",
+   "label": "Responsable du projet",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "d\u00e9signation_de_laffaire",
+   "fieldtype": "Text",
+   "label": "D\u00e9signation de l'affaire"
+  },
+  {
+   "fieldname": "section_break_flkd",
+   "fieldtype": "Section Break",
+   "label": "Section de Tarification "
+  },
+  {
+   "fieldname": "type_de_prix",
+   "fieldtype": "Data",
+   "label": "Type de prix"
+  },
+  {
+   "fieldname": "column_break_n28y",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_de_projet_section",
+   "fieldtype": "Section Break",
+   "label": "Section de Projet"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-22 13:39:53.683554",
+ "modified": "2024-08-22 14:01:11.375105",
  "modified_by": "Administrator",
  "module": "ct3",
  "name": "Chiffrage",
