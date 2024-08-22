@@ -86,7 +86,11 @@
   "column_break_pmwi",
   "importer_items",
   "section_break_2ljh",
-  "items"
+  "boq_items",
+  "total_heures",
+  "boq_plus_tab",
+  "boq_plus_items",
+  "total_ht"
  ],
  "fields": [
   {
@@ -484,15 +488,36 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "items",
+   "fieldname": "boq_items",
    "fieldtype": "Table",
    "label": "Items",
    "options": "Chiffrage_BOQ"
+  },
+  {
+   "fieldname": "total_heures",
+   "fieldtype": "Float",
+   "label": "Total Heures"
+  },
+  {
+   "fieldname": "boq_plus_tab",
+   "fieldtype": "Tab Break",
+   "label": "BOQ_PLUS"
+  },
+  {
+   "fieldname": "boq_plus_items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Chiffrage_BOQ_PLUS"
+  },
+  {
+   "fieldname": "total_ht",
+   "fieldtype": "Currency",
+   "label": "Total HT"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-22 15:56:13.000995",
+ "modified": "2024-08-22 16:05:28.990749",
  "modified_by": "Administrator",
  "module": "ct3",
  "name": "Chiffrage",

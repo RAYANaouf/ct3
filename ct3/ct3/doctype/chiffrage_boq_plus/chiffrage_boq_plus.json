@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-08-22 16:00:28.146403",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "designation",
+  "column_break_fyju",
+  "fournisseur",
+  "section_break_avsd",
+  "unit\u00e9",
+  "column_break_jzvq",
+  "quatit\u00e9",
+  "column_break_l7bg",
+  "prix_unitaire",
+  "column_break_cawq",
+  "montant"
+ ],
+ "fields": [
+  {
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Designation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_fyju",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fournisseur",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Fournisseur",
+   "options": "Supplier",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_avsd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "unit\u00e9",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Unit\u00e9",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_jzvq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "quatit\u00e9",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Quatit\u00e9",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_l7bg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "prix_unitaire",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Prix Unitaire",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_cawq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "montant",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Montant",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-08-22 16:04:25.361152",
+ "modified_by": "Administrator",
+ "module": "ct3",
+ "name": "Chiffrage_BOQ_PLUS",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
