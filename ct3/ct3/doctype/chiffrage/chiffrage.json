@@ -57,15 +57,11 @@
   "exp\u00e9rience_pass\u00e9e_avec_lingenieur_conseil_du_client",
   "section_de_p\u00e9riode_section",
   "pour_la_p\u00e9riode_de_n\u00e9gociation_de_loffre",
+  "d\u00e9cideurs_rencontr\u00e9s",
+  "client_est_il_assur\u00e9_davoir_sa_propre_commande",
   "column_break_hzqj",
   "pour_la_p\u00e9riode_de_r\u00e9alisation",
-  "section_break_ndet",
-  "d\u00e9cideurs_rencontr\u00e9s",
-  "column_break_lqqm",
   "contacts_avec_ling\u00e9nieur_conseil_du_client",
-  "column_break_xwnb",
-  "client_est_il_assur\u00e9_davoir_sa_propre_commande",
-  "column_break_fdpk",
   "estimation_du_budget_client",
   "section_break_panj",
   "crit\u00e8res_de_d\u00e9cision_du_client",
@@ -76,7 +72,20 @@
   "section_break_doc1",
   "autres_atouts_\u00e0_mettre_en_valeur",
   "column_break_bkva",
-  "handicap_\u00e9ventuel"
+  "handicap_\u00e9ventuel",
+  "tech_tab",
+  "decision",
+  "column_break_mwbb",
+  "techniciens_visiteurs",
+  "column_break_n7op",
+  "fichier_joint",
+  "section_break_wanx",
+  "contenu_du_rapport",
+  "boq_tab",
+  "nombre_de_travailleurs",
+  "column_break_pmwi",
+  "importer_items",
+  "section_break_2ljh"
  ],
  "fields": [
   {
@@ -272,7 +281,7 @@
   },
   {
    "fieldname": "type_de_consultation",
-   "fieldtype": "Text",
+   "fieldtype": "Data",
    "label": "Type de consultation"
   },
   {
@@ -290,7 +299,7 @@
   },
   {
    "fieldname": "concurrence_potentielle",
-   "fieldtype": "Data",
+   "fieldtype": "Currency",
    "label": "Concurrence potentielle"
   },
   {
@@ -320,7 +329,7 @@
   {
    "description": "Pr\u00e9ciser les affaires r\u00e9alis\u00e9es: prestations, marge, attitude constractuelle (avenant obtenus), approbation des plans, des fournisseurs, coordination, ...)",
    "fieldname": "exp\u00e9rience_pass\u00e9e_avec_lingenieur_conseil_du_client",
-   "fieldtype": "Data",
+   "fieldtype": "Text",
    "label": "Exp\u00e9rience pass\u00e9e avec l'ingenieur conseil du client "
   },
   {
@@ -343,17 +352,9 @@
    "label": "Pour la p\u00e9riode de r\u00e9alisation"
   },
   {
-   "fieldname": "section_break_ndet",
-   "fieldtype": "Section Break"
-  },
-  {
    "fieldname": "d\u00e9cideurs_rencontr\u00e9s",
    "fieldtype": "Data",
    "label": "D\u00e9cideurs rencontr\u00e9s"
-  },
-  {
-   "fieldname": "column_break_lqqm",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "contacts_avec_ling\u00e9nieur_conseil_du_client",
@@ -361,18 +362,10 @@
    "label": "Contacts avec l'ing\u00e9nieur conseil du client"
   },
   {
-   "fieldname": "column_break_xwnb",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "client_est_il_assur\u00e9_davoir_sa_propre_commande",
    "fieldtype": "Select",
    "label": "Client est il assur\u00e9 d'avoir sa propre commande?",
    "options": "Oui\nNo"
-  },
-  {
-   "fieldname": "column_break_fdpk",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "estimation_du_budget_client",
@@ -426,11 +419,73 @@
    "fieldname": "handicap_\u00e9ventuel",
    "fieldtype": "Text",
    "label": "Handicap \u00e9ventuel"
+  },
+  {
+   "fieldname": "tech_tab",
+   "fieldtype": "Tab Break",
+   "label": "TECH"
+  },
+  {
+   "fieldname": "decision",
+   "fieldtype": "Select",
+   "label": "Decision",
+   "options": "Acc\u00e9pt\u00e9e\nRejet\u00e9"
+  },
+  {
+   "fieldname": "column_break_mwbb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "techniciens_visiteurs",
+   "fieldtype": "Link",
+   "label": "Techniciens visiteurs",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "column_break_n7op",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fichier_joint",
+   "fieldtype": "Attach",
+   "label": "Fichier joint"
+  },
+  {
+   "fieldname": "section_break_wanx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "contenu_du_rapport",
+   "fieldtype": "Text",
+   "label": "Contenu du rapport"
+  },
+  {
+   "fieldname": "boq_tab",
+   "fieldtype": "Tab Break",
+   "label": "BOQ"
+  },
+  {
+   "fieldname": "nombre_de_travailleurs",
+   "fieldtype": "Int",
+   "label": "Nombre de travailleurs"
+  },
+  {
+   "fieldname": "column_break_pmwi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "importer_items",
+   "fieldtype": "Attach",
+   "label": "Importer Items"
+  },
+  {
+   "fieldname": "section_break_2ljh",
+   "fieldtype": "Section Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-22 15:21:54.191520",
+ "modified": "2024-08-22 15:37:02.971810",
  "modified_by": "Administrator",
  "module": "ct3",
  "name": "Chiffrage",
