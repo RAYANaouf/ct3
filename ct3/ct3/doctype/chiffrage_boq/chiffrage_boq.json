@@ -1,0 +1,84 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-08-22 15:51:01.444909",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "designation",
+  "column_break_emor",
+  "unit\u00e9",
+  "column_break_ld3h",
+  "quantit\u00e9",
+  "column_break_1kah",
+  "heure_unitaire",
+  "column_break_5nkb",
+  "total_heure"
+ ],
+ "fields": [
+  {
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Designation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_emor",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "unit\u00e9",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Unit\u00e9",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ld3h",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "quantit\u00e9",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Quantit\u00e9",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1kah",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "heure_unitaire",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Heure Unitaire",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_5nkb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_heure",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Total Heure",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-08-22 15:55:26.837290",
+ "modified_by": "Administrator",
+ "module": "ct3",
+ "name": "Chiffrage_BOQ",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

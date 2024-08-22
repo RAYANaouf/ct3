@@ -85,7 +85,8 @@
   "nombre_de_travailleurs",
   "column_break_pmwi",
   "importer_items",
-  "section_break_2ljh"
+  "section_break_2ljh",
+  "items"
  ],
  "fields": [
   {
@@ -481,11 +482,17 @@
   {
    "fieldname": "section_break_2ljh",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Chiffrage_BOQ"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-22 15:37:02.971810",
+ "modified": "2024-08-22 15:56:13.000995",
  "modified_by": "Administrator",
  "module": "ct3",
  "name": "Chiffrage",
