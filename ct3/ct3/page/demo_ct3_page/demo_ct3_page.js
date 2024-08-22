@@ -36,30 +36,12 @@ frappe.pages['demo-ct3-page'].on_page_load = function(wrapper) {
 			else if(value == 'Succes'){
 				page.set_indicator(value , "green")
 			}
-
-//			switch(field.get_value()){
-//				case 'Open':
-//					frappe.msgprint(fild.get_value());
-//					indicator_color = 'blue';
-//					indicator_label = 'Open';
-//					break;
-//                                case 'Close':
-//					frappe.msgprint(fild.get_value());
-//                                        indicator_color = 'Green';
-//                                        indicator_label = 'Close';
-//                                        break;
-//                                case 'Cancelled':
-//					frappe.msgprint(fild.get_value());
-//                                        indicator_color = 'Gray';
-//                                        indicator_label = 'Cancelled';
-//                                        break;
-//                                default:
-//					frappe.msgprint(fild.get_value());
-//                                        indicator_color = 'Black';
-//                                        indicator_label = 'Unknown';
-//      			}
-//			page.set_indicator(indicator_label , indicator_color)
-
 		}
 	});
+
+	$(frappe.render_template("demo_html_page" , {} )).appendTo(page.body);
 }
+
+
+
+

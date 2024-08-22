@@ -7,7 +7,13 @@
  "field_order": [
   "com_tab",
   "com_intervenant",
+  "column_break_boff",
+  "tel",
   "section_break_6s6d",
+  "business__unit\u00e9",
+  "column_break_nt2l",
+  "autres_unit\u00e9s",
+  "column_break_ea7l",
   "chiffre_daffaire",
   "column_break_5qdv",
   "region_dactivit\u00e9",
@@ -34,7 +40,7 @@
   {
    "fieldname": "com_intervenant",
    "fieldtype": "Link",
-   "label": "Intervenant",
+   "label": "Responsable du projet",
    "options": "Employee"
   },
   {
@@ -117,11 +123,38 @@
   {
    "fieldname": "column_break_0lbo",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "business__unit\u00e9",
+   "fieldtype": "Data",
+   "label": "Business / Unit\u00e9"
+  },
+  {
+   "fieldname": "column_break_nt2l",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "autres_unit\u00e9s",
+   "fieldtype": "Data",
+   "label": "Autres Unit\u00e9s"
+  },
+  {
+   "fieldname": "column_break_ea7l",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_boff",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tel",
+   "fieldtype": "Phone",
+   "label": "Tel"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-22 12:22:41.742832",
+ "modified": "2024-08-22 13:39:53.683554",
  "modified_by": "Administrator",
  "module": "ct3",
  "name": "Chiffrage",
