@@ -90,7 +90,14 @@
   "total_heures",
   "boq_plus_tab",
   "boq_plus_items",
-  "total_ht"
+  "total_ht",
+  "four_tab",
+  "location_vehicule",
+  "location_clarque_telescopique_et_transpalette",
+  "details_section",
+  "prorata",
+  "column_break_z2w9",
+  "provision_garantie"
  ],
  "fields": [
   {
@@ -513,11 +520,45 @@
    "fieldname": "total_ht",
    "fieldtype": "Currency",
    "label": "Total HT"
+  },
+  {
+   "fieldname": "four_tab",
+   "fieldtype": "Tab Break",
+   "label": "FOUR"
+  },
+  {
+   "fieldname": "location_vehicule",
+   "fieldtype": "Currency",
+   "label": "Location vehicule"
+  },
+  {
+   "fieldname": "location_clarque_telescopique_et_transpalette",
+   "fieldtype": "Currency",
+   "label": "Location clarque telescopique et transpalette"
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "prorata",
+   "fieldtype": "Data",
+   "label": "Prorata"
+  },
+  {
+   "fieldname": "column_break_z2w9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "provision_garantie",
+   "fieldtype": "Rating",
+   "label": "Provision garantie"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-22 16:05:28.990749",
+ "modified": "2024-08-25 00:01:56.608257",
  "modified_by": "Administrator",
  "module": "ct3",
  "name": "Chiffrage",
