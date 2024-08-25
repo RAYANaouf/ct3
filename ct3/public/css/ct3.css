@@ -1,0 +1,61 @@
+
+
+/*******************    chiffrage doctype style     ******************/
+
+
+/******* add space on the bottom **********/
+[data-page-route = "Chiffrage"] div.form-layout{
+	margin-bottom : 150px ;
+}
+/******************************************/
+/*** tab FOUR ***/
+
+/* FOUR tab backgound color */
+[data-page-route = "Chiffrage"] li.nav-item.show:nth-child(5){
+	background : green ;
+}
+
+
+/* set the text color for unactive and active tab */
+[data-page-route = "Chiffrage"] li.nav-item.show:nth-child(5) a,
+[data-page-route = "Chiffrage"] li.nav-item.show:nth-child(5) a.active
+{
+	color : white ;
+}
+
+
+/* container background  */
+div#chiffrage-four_tab{
+	background : #E8F5E9;
+}
+
+/* input background color  */
+div#chiffrage-four_tab input {
+	background : white  ;
+}
+
+
+
+/*** tab POSE ***/
+
+/* POSE tab background color  */
+[data-page-route = "Chiffrage"] li.nav-item.show:nth-child(6){
+	background : green ;
+}
+
+/* set the text color for unactive and active tab  */
+[data-page-route = "Chiffrage"] li.nav-item.show:nth-child(6) a,
+[data-page-route = "Chiffrage"] li.nav-item.show:nth-child(6) a.active
+{
+	color : white ;
+}
+
+/* container background  */
+div#chiffrage-pose_tab{
+	background : #E8F5E9  ;
+}
+
+/* input background  */
+div#chiffrage-pose_tab input {
+	background : white  ;
+}

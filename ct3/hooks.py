@@ -10,11 +10,11 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/ct3/css/ct3.css"
+app_include_css = "/assets/ct3/css/ct3.css"
 # app_include_js = "/assets/ct3/js/ct3.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/ct3/css/ct3.css"
+#web_include_css = "/assets/ct3/css/ct3.css"
 # web_include_js = "/assets/ct3/js/ct3.js"
 
 # include custom scss in every website theme (without file extension ".scss")
