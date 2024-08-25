@@ -96,8 +96,8 @@
   "materiel_fixe_piece_rechange_da",
   "transport_engin_manutention_da",
   "responsable_des_operation_h",
-  "chef_local_tc_h",
-  "ing\u00e9nieur_projet_h",
+  "four_chef_local_tc_h",
+  "four_ing\u00e9nieur_projet_h",
   "column_break_raka",
   "assistante_____h",
   "resp_logistique__h",
@@ -105,6 +105,8 @@
   "assurances",
   "frais_reception_usine",
   "section_break_cejm",
+  "total_depenses_direct",
+  "section_break_al2c",
   "location_vehicule",
   "location_clarque_telescopique_et_transpalette",
   "details_section",
@@ -123,7 +125,32 @@
   "column_break_mdlp",
   "total_d\u00e9penses",
   "column_break_viwe",
-  "total_ht_2"
+  "total_ht_2",
+  "pose_tab",
+  "nombre_de_site",
+  "section_break_t6dn",
+  "1consomables_et_accessoires",
+  "mat\u00e9riel_consomable",
+  "mat\u00e9riel_accessoire",
+  "transport_livreue",
+  "3personnel_mansuel",
+  "resp_des_op\u00e9ration_h",
+  "pose_chef_local_tc_h",
+  "pose_ing\u00e9nieur_projet_h",
+  "chef_chantier_h",
+  "assistante____h",
+  "resp_logistique__achat_h",
+  "column_break_ypcu",
+  "2main_doeuvre_chantier",
+  "technicien_h",
+  "sous_traitance",
+  "etudes",
+  "coordination_planning_h",
+  "resp_etudes_h",
+  "ingenieur_etudes_h",
+  "projecteur_dessinateur_h",
+  "controle_fait_par_organisme_ext\u00e9rieur",
+  "frais_dossier_titages_plan"
  ],
  "fields": [
   {
@@ -605,18 +632,6 @@
    "label": "Responsable des operation (H)"
   },
   {
-   "default": "0",
-   "fieldname": "chef_local_tc_h",
-   "fieldtype": "Float",
-   "label": "Chef local TC (H)"
-  },
-  {
-   "default": "0",
-   "fieldname": "ing\u00e9nieur_projet_h",
-   "fieldtype": "Float",
-   "label": "Ing\u00e9nieur Projet (H)"
-  },
-  {
    "fieldname": "column_break_raka",
    "fieldtype": "Column Break"
   },
@@ -715,11 +730,169 @@
    "fieldname": "total_ht_2",
    "fieldtype": "Currency",
    "label": "Total HT"
+  },
+  {
+   "columns": 10,
+   "fieldname": "total_depenses_direct",
+   "fieldtype": "Currency",
+   "label": "Total Depenses direct "
+  },
+  {
+   "fieldname": "section_break_al2c",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "pose_tab",
+   "fieldtype": "Tab Break",
+   "label": "POSE"
+  },
+  {
+   "fieldname": "nombre_de_site",
+   "fieldtype": "Int",
+   "label": "Nombre de site"
+  },
+  {
+   "fieldname": "1consomables_et_accessoires",
+   "fieldtype": "Heading",
+   "label": "1.Consomables et Accessoires"
+  },
+  {
+   "fieldname": "mat\u00e9riel_consomable",
+   "fieldtype": "Currency",
+   "label": "Mat\u00e9riel consomable "
+  },
+  {
+   "fieldname": "mat\u00e9riel_accessoire",
+   "fieldtype": "Currency",
+   "label": "Mat\u00e9riel accessoire"
+  },
+  {
+   "fieldname": "transport_livreue",
+   "fieldtype": "Currency",
+   "label": "Transport (livreue)"
+  },
+  {
+   "fieldname": "3personnel_mansuel",
+   "fieldtype": "Heading",
+   "label": "3.Personnel mansuel"
+  },
+  {
+   "fieldname": "resp_des_op\u00e9ration_h",
+   "fieldtype": "Float",
+   "label": "Resp des op\u00e9ration (H)"
+  },
+  {
+   "fieldname": "column_break_ypcu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "2main_doeuvre_chantier",
+   "fieldtype": "Heading",
+   "label": "2.Main D'oeuvre chantier"
+  },
+  {
+   "fieldname": "section_break_t6dn",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "four_chef_local_tc_h",
+   "fieldtype": "Float",
+   "label": "Chef local TC (H)"
+  },
+  {
+   "default": "0",
+   "fieldname": "four_ing\u00e9nieur_projet_h",
+   "fieldtype": "Float",
+   "label": "Ing\u00e9nieur Projet (H)"
+  },
+  {
+   "default": "0",
+   "fieldname": "pose_chef_local_tc_h",
+   "fieldtype": "Float",
+   "label": "Chef local TC (H)"
+  },
+  {
+   "default": "0",
+   "fieldname": "pose_ing\u00e9nieur_projet_h",
+   "fieldtype": "Float",
+   "label": "Ing\u00e9nieur Projet (H)"
+  },
+  {
+   "default": "0",
+   "fieldname": "chef_chantier_h",
+   "fieldtype": "Float",
+   "label": "chef Chantier (H)"
+  },
+  {
+   "default": "0",
+   "fieldname": "assistante____h",
+   "fieldtype": "Currency",
+   "label": "Assistant(e)    (H)"
+  },
+  {
+   "default": "0",
+   "fieldname": "resp_logistique__achat_h",
+   "fieldtype": "Float",
+   "label": "Resp Logistique / Achat (H)"
+  },
+  {
+   "default": "0",
+   "fieldname": "technicien_h",
+   "fieldtype": "Float",
+   "label": "Technicien (H)"
+  },
+  {
+   "default": "0",
+   "fieldname": "sous_traitance",
+   "fieldtype": "Currency",
+   "label": "Sous traitance"
+  },
+  {
+   "fieldname": "etudes",
+   "fieldtype": "Heading",
+   "label": "4.Etudes"
+  },
+  {
+   "default": "0",
+   "fieldname": "coordination_planning_h",
+   "fieldtype": "Float",
+   "label": "Coordination planning (H)"
+  },
+  {
+   "default": "0",
+   "fieldname": "resp_etudes_h",
+   "fieldtype": "Currency",
+   "label": "Resp etudes (H)"
+  },
+  {
+   "default": "0",
+   "fieldname": "ingenieur_etudes_h",
+   "fieldtype": "Float",
+   "label": "Ingenieur Etudes (H)"
+  },
+  {
+   "default": "0",
+   "fieldname": "projecteur_dessinateur_h",
+   "fieldtype": "Float",
+   "label": "Projecteur Dessinateur (H)"
+  },
+  {
+   "default": "0",
+   "fieldname": "controle_fait_par_organisme_ext\u00e9rieur",
+   "fieldtype": "Currency",
+   "label": "Controle fait par organisme ext\u00e9rieur"
+  },
+  {
+   "default": "0",
+   "fieldname": "frais_dossier_titages_plan",
+   "fieldtype": "Currency",
+   "label": "Frais dossier titages (plan)"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-25 11:29:18.666957",
+ "modified": "2024-08-25 12:25:37.886521",
  "modified_by": "Administrator",
  "module": "ct3",
  "name": "Chiffrage",
