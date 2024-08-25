@@ -92,12 +92,38 @@
   "boq_plus_items",
   "total_ht",
   "four_tab",
+  "nomber_de_site",
+  "materiel_fixe_piece_rechange_da",
+  "transport_engin_manutention_da",
+  "responsable_des_operation_h",
+  "chef_local_tc_h",
+  "ing\u00e9nieur_projet_h",
+  "column_break_raka",
+  "assistante_____h",
+  "resp_logistique__h",
+  "frais_achat",
+  "assurances",
+  "frais_reception_usine",
+  "section_break_cejm",
   "location_vehicule",
   "location_clarque_telescopique_et_transpalette",
   "details_section",
+  "detail",
   "prorata",
+  "provision_garantie",
+  "administration",
+  "alias",
   "column_break_z2w9",
-  "provision_garantie"
+  "detail_marge",
+  "marge",
+  "marge_nego",
+  "tap",
+  "section_break_zajd",
+  "total_boq_plus",
+  "column_break_mdlp",
+  "total_d\u00e9penses",
+  "column_break_viwe",
+  "total_ht_2"
  ],
  "fields": [
   {
@@ -538,12 +564,11 @@
   },
   {
    "fieldname": "details_section",
-   "fieldtype": "Section Break",
-   "label": "Details"
+   "fieldtype": "Section Break"
   },
   {
    "fieldname": "prorata",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "Prorata"
   },
   {
@@ -552,13 +577,149 @@
   },
   {
    "fieldname": "provision_garantie",
-   "fieldtype": "Rating",
+   "fieldtype": "Int",
    "label": "Provision garantie"
+  },
+  {
+   "default": "1",
+   "fieldname": "nomber_de_site",
+   "fieldtype": "Int",
+   "label": "Nomber de site"
+  },
+  {
+   "default": "0",
+   "fieldname": "materiel_fixe_piece_rechange_da",
+   "fieldtype": "Currency",
+   "label": "Materiel fixe Piece rechange (DA)"
+  },
+  {
+   "default": "0",
+   "fieldname": "transport_engin_manutention_da",
+   "fieldtype": "Currency",
+   "label": "Transport, Engin, Manutention (DA)"
+  },
+  {
+   "default": "0",
+   "fieldname": "responsable_des_operation_h",
+   "fieldtype": "Float",
+   "label": "Responsable des operation (H)"
+  },
+  {
+   "default": "0",
+   "fieldname": "chef_local_tc_h",
+   "fieldtype": "Float",
+   "label": "Chef local TC (H)"
+  },
+  {
+   "default": "0",
+   "fieldname": "ing\u00e9nieur_projet_h",
+   "fieldtype": "Float",
+   "label": "Ing\u00e9nieur Projet (H)"
+  },
+  {
+   "fieldname": "column_break_raka",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "assistante_____h",
+   "fieldtype": "Float",
+   "label": "Assistant(e)     (H)"
+  },
+  {
+   "default": "0",
+   "fieldname": "resp_logistique__h",
+   "fieldtype": "Float",
+   "label": "Resp logistique  (H)"
+  },
+  {
+   "default": "0",
+   "fieldname": "frais_achat",
+   "fieldtype": "Currency",
+   "label": "Frais achat"
+  },
+  {
+   "default": "0",
+   "fieldname": "assurances",
+   "fieldtype": "Currency",
+   "label": "Assurances"
+  },
+  {
+   "default": "0",
+   "fieldname": "frais_reception_usine",
+   "fieldtype": "Currency",
+   "label": "Frais reception usine "
+  },
+  {
+   "fieldname": "section_break_cejm",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "detail",
+   "fieldtype": "Heading",
+   "label": "Detail"
+  },
+  {
+   "fieldname": "administration",
+   "fieldtype": "Int",
+   "label": "Administration"
+  },
+  {
+   "fieldname": "alias",
+   "fieldtype": "Int",
+   "label": "Alias"
+  },
+  {
+   "fieldname": "detail_marge",
+   "fieldtype": "Heading",
+   "label": "Detail Marge"
+  },
+  {
+   "fieldname": "marge",
+   "fieldtype": "Currency",
+   "label": "Marge"
+  },
+  {
+   "fieldname": "marge_nego",
+   "fieldtype": "Currency",
+   "label": "Marge Nego"
+  },
+  {
+   "fieldname": "tap",
+   "fieldtype": "Currency",
+   "label": "TAP"
+  },
+  {
+   "fieldname": "section_break_zajd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "total_boq_plus",
+   "fieldtype": "Currency",
+   "label": "Total BOQ_PLUS"
+  },
+  {
+   "fieldname": "column_break_mdlp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_d\u00e9penses",
+   "fieldtype": "Currency",
+   "label": "Total d\u00e9penses"
+  },
+  {
+   "fieldname": "column_break_viwe",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_ht_2",
+   "fieldtype": "Currency",
+   "label": "Total HT"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-25 00:01:56.608257",
+ "modified": "2024-08-25 11:29:18.666957",
  "modified_by": "Administrator",
  "module": "ct3",
  "name": "Chiffrage",
