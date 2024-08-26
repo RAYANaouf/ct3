@@ -159,9 +159,31 @@
   "total_depenses_direct",
   "section_break_b9sd",
   "billet_davion",
+  "hotel",
+  "restauration",
+  "transport",
+  "pose_location_vehicule",
+  "location_clarque_transpallette_echaffaudag_",
+  "outillage_amortissement",
   "column_break_m4s5",
-  "price",
-  "column_break_1di8"
+  "billet_davion_price",
+  "hotel_price",
+  "restauration_price",
+  "transport_price",
+  "location_vehicule_price",
+  "other_location_price",
+  "outillage_price",
+  "section_break_zt7n",
+  "pose_detail",
+  "pose_prorata",
+  "pose_provision_garantie",
+  "pose_administration",
+  "pose_aleas",
+  "column_break_0anw",
+  "pose_detail_marge",
+  "pose_marge",
+  "pose_marge_n\u00e9go",
+  "pose_tap"
  ],
  "fields": [
   {
@@ -957,15 +979,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "price",
-   "fieldtype": "Currency",
-   "label": "Price"
-  },
-  {
-   "fieldname": "column_break_1di8",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "section_break_dzl1",
    "fieldtype": "Section Break",
    "hide_border": 1
@@ -980,11 +993,139 @@
    "fieldname": "section_break_16tk",
    "fieldtype": "Section Break",
    "hide_border": 1
+  },
+  {
+   "fieldname": "hotel",
+   "fieldtype": "Int",
+   "label": "Hotel"
+  },
+  {
+   "fieldname": "restauration",
+   "fieldtype": "Int",
+   "label": "Restauration"
+  },
+  {
+   "fieldname": "transport",
+   "fieldtype": "Int",
+   "label": "Transport"
+  },
+  {
+   "fieldname": "pose_location_vehicule",
+   "fieldtype": "Int",
+   "label": "Location vehicule"
+  },
+  {
+   "fieldname": "location_clarque_transpallette_echaffaudag_",
+   "fieldtype": "Int",
+   "label": "Location Clarque, Transpallette, Echaffaudag ..."
+  },
+  {
+   "fieldname": "outillage_amortissement",
+   "fieldtype": "Int",
+   "label": "Outillage (amortissement)"
+  },
+  {
+   "fieldname": "billet_davion_price",
+   "fieldtype": "Currency",
+   "label": "Price"
+  },
+  {
+   "fieldname": "hotel_price",
+   "fieldtype": "Currency",
+   "label": "Price"
+  },
+  {
+   "fieldname": "restauration_price",
+   "fieldtype": "Currency",
+   "label": "Price"
+  },
+  {
+   "fieldname": "transport_price",
+   "fieldtype": "Currency",
+   "label": "Price"
+  },
+  {
+   "fieldname": "location_vehicule_price",
+   "fieldtype": "Currency",
+   "label": "Price"
+  },
+  {
+   "fieldname": "other_location_price",
+   "fieldtype": "Currency",
+   "label": "Price"
+  },
+  {
+   "fieldname": "outillage_price",
+   "fieldtype": "Currency",
+   "label": "Price"
+  },
+  {
+   "fieldname": "section_break_zt7n",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "bold": 1,
+   "fieldname": "pose_detail",
+   "fieldtype": "Heading",
+   "label": "Detail"
+  },
+  {
+   "default": "0",
+   "fieldname": "pose_prorata",
+   "fieldtype": "Int",
+   "label": "Prorata"
+  },
+  {
+   "default": "0",
+   "fieldname": "pose_provision_garantie",
+   "fieldtype": "Int",
+   "label": "Provision garantie"
+  },
+  {
+   "default": "0",
+   "fieldname": "pose_administration",
+   "fieldtype": "Int",
+   "label": "Administration"
+  },
+  {
+   "default": "0",
+   "fieldname": "pose_aleas",
+   "fieldtype": "Int",
+   "label": "Al\u00e9as"
+  },
+  {
+   "fieldname": "column_break_0anw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "fieldname": "pose_detail_marge",
+   "fieldtype": "Heading",
+   "label": "Detail Marge"
+  },
+  {
+   "default": "0",
+   "fieldname": "pose_marge",
+   "fieldtype": "Currency",
+   "label": "Marge"
+  },
+  {
+   "default": "0",
+   "fieldname": "pose_marge_n\u00e9go",
+   "fieldtype": "Currency",
+   "label": "Marge N\u00e9go"
+  },
+  {
+   "default": "0",
+   "fieldname": "pose_tap",
+   "fieldtype": "Currency",
+   "label": "TAP"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-25 15:10:08.350513",
+ "modified": "2024-08-26 11:27:39.233934",
  "modified_by": "Administrator",
  "module": "ct3",
  "name": "Chiffrage",
