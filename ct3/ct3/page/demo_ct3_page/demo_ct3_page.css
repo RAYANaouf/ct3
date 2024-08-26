@@ -1,0 +1,50 @@
+div#pointage_page_container{
+	height : 100% ;
+	width  : 100% ;
+   	background : #f9f9f9 ; 
+}
+
+#pointage_page_container #top_action_bar{
+	height          : 150.px   ; 
+	width           : 100%     ;
+	background      : #FFFFFF  ; 
+	box-shadow      : 1px 1px 5px 0px #a0a0a0 ;
+	border          : 1px solid #505050 ;
+	border-radius   : 10px        ; 
+	padding         : 5px 5px 5px 10px  ;
+
+	display         : flex        ;
+	flex-wrap       : nowrap      ;
+	justify-content : flex-start  ;
+	align-items     : center      ;
+
+}
+
+#pointage_page_container #top_action_bar div.top_bar_item {
+	background : #505050 ;
+	margin     : 5px     ; 
+}
+
+#pointage_page_container #top_action_bar div.top_bar_item:nth-child(2) {
+	background : #000000  ;
+	height     : 90% ;
+	width      : 40% ; 
+	margin     : 5px ; 
+}
+
+#pointage_page_container #top_action_bar:nth-child(3) {
+	background : #505050  ; 
+	height   : 90% ;
+	width    : 40% ; 
+	margin   : 5px ; 
+}
+
+#pointage_page_container #table_container {
+	background : #f0f0f0  ;
+	height     : 900px    ;
+	width      : 100%     ;
+	margin-top : 55px     ;
+	margin-bottom : 55px  ; 
+}
+
+
