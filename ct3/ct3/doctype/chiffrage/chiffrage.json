@@ -389,7 +389,7 @@
   },
   {
    "fieldname": "esp\u00e9rance_de_succ\u00e9s",
-   "fieldtype": "Data",
+   "fieldtype": "Float",
    "label": "Esp\u00e9rance de succ\u00e9s"
   },
   {
@@ -574,9 +574,11 @@
    "options": "Chiffrage_BOQ"
   },
   {
+   "default": "0",
    "fieldname": "total_heures",
    "fieldtype": "Float",
-   "label": "Total Heures"
+   "label": "Total Heures",
+   "read_only": 1
   },
   {
    "fieldname": "boq_plus_tab",
@@ -590,9 +592,11 @@
    "options": "Chiffrage_BOQ_PLUS"
   },
   {
+   "default": "0",
    "fieldname": "total_ht",
    "fieldtype": "Currency",
-   "label": "Total HT"
+   "label": "Total HT",
+   "read_only": 1
   },
   {
    "fieldname": "four_tab",
@@ -1134,7 +1138,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-26 12:53:21.920527",
+ "modified": "2024-08-26 14:08:20.427634",
  "modified_by": "Administrator",
  "module": "ct3",
  "name": "Chiffrage",
