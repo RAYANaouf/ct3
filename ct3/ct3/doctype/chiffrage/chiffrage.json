@@ -35,9 +35,9 @@
   "offre",
   "spaceholder1",
   "offre_valable_jusquau",
-  "section_break_16tk",
+  "section_break_sjbl",
   "situation_financi\u00e8re_2",
-  "section_break_boc8",
+  "section_break_mxck",
   "la_situation_financi\u00e8re_du_client",
   "column_break_busx",
   "garantie_de_paiement_demand\u00e9e_par_3ct",
@@ -224,7 +224,7 @@
    "fieldname": "column_break_ea7l",
    "fieldtype": "Section Break",
    "hide_border": 1,
-   "label": "Section d'Unit\u00e9"
+   "label": "Section de client"
   },
   {
    "fieldname": "column_break_boff",
@@ -233,12 +233,16 @@
   {
    "fieldname": "tel",
    "fieldtype": "Phone",
-   "label": "Tel"
+   "in_list_view": 1,
+   "label": "Tel",
+   "reqd": 1
   },
   {
    "fieldname": "client_priv\u00e9",
-   "fieldtype": "Data",
-   "label": "Client priv\u00e9"
+   "fieldtype": "Link",
+   "label": "Client priv\u00e9",
+   "options": "Customer",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_zekt",
@@ -246,7 +250,7 @@
   },
   {
    "fieldname": "pays",
-   "fieldtype": "Data",
+   "fieldtype": "Currency",
    "label": "Pays"
   },
   {
@@ -263,13 +267,16 @@
    "fieldname": "ing\u00e9nieur_conseil_du_client",
    "fieldtype": "Link",
    "label": "Ing\u00e9nieur conseil du client",
-   "options": "Employee"
+   "options": "Employee",
+   "reqd": 1
   },
   {
    "fieldname": "responsable_du_projet",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Responsable du projet",
-   "options": "Employee"
+   "options": "Employee",
+   "reqd": 1
   },
   {
    "fieldname": "d\u00e9signation_de_laffaire",
@@ -283,9 +290,11 @@
    "label": "Section de Tarification "
   },
   {
+   "default": "Estimatif",
    "fieldname": "type_de_prix",
-   "fieldtype": "Data",
-   "label": "Type de prix"
+   "fieldtype": "Select",
+   "label": "Type de prix",
+   "options": "Estimatif"
   },
   {
    "fieldname": "column_break_n28y",
@@ -356,14 +365,6 @@
    "label": "Garantie de paiement demand\u00e9e par 3CT"
   },
   {
-   "bold": 1,
-   "collapsible": 1,
-   "fieldname": "section_break_boc8",
-   "fieldtype": "Section Break",
-   "hide_border": 1,
-   "label": "Situation et Garantie"
-  },
-  {
    "collapsible": 1,
    "fieldname": "section_break_5wou",
    "fieldtype": "Section Break",
@@ -374,12 +375,13 @@
    "fieldname": "consultation",
    "fieldtype": "HTML",
    "label": "Consultation",
-   "options": "<div>\n  <h3>Consultation</h3>\n</div>"
+   "options": "<div>\n  <h2>Consultation</h2>\n</div>"
   },
   {
    "fieldname": "type_de_consultation",
-   "fieldtype": "Data",
-   "label": "Type de consultation"
+   "fieldtype": "Select",
+   "label": "Type de consultation",
+   "options": "Lors d'une r\u00e9union"
   },
   {
    "fieldname": "column_break_vvtq",
@@ -408,7 +410,7 @@
    "fieldname": "info_commerciales",
    "fieldtype": "HTML",
    "label": "Info Commerciales",
-   "options": "<div>\n  <h3>Info Commerciales</h3>\n</div>"
+   "options": "<div>\n  <h2>Info Commerciales</h2>\n</div>"
   },
   {
    "collapsible": 1,
@@ -986,13 +988,8 @@
   {
    "fieldname": "situation_financi\u00e8re_2",
    "fieldtype": "HTML",
-   "label": "Situation Financi\u00e8re 2",
-   "options": "<div>\n  <h3>Situation Financi\u00e8re</h3>\n</div>"
-  },
-  {
-   "fieldname": "section_break_16tk",
-   "fieldtype": "Section Break",
-   "hide_border": 1
+   "label": "Situation Financi\u00e8re html",
+   "options": "<div>\n  <h2>Situation Financi\u00e8re</h2>\n</div>"
   },
   {
    "fieldname": "hotel",
@@ -1121,11 +1118,23 @@
    "fieldname": "pose_tap",
    "fieldtype": "Currency",
    "label": "TAP"
+  },
+  {
+   "fieldname": "section_break_sjbl",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_mxck",
+   "fieldtype": "Section Break",
+   "hide_border": 1,
+   "label": "Situation Financi\u00e8re "
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-08-26 11:27:39.233934",
+ "modified": "2024-08-26 12:53:21.920527",
  "modified_by": "Administrator",
  "module": "ct3",
  "name": "Chiffrage",
