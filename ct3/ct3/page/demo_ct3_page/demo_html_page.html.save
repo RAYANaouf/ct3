@@ -1,13 +1,18 @@
 <div id="pointage_page_container">
     <div id="top_action_bar">
         <div class="top_bar_item">
+            <h5>Choisir le Mois:</h5>
+        </div>
+        <div class="top_bar_item">
             <form id="pointageForm">
-                <label for="pointage_month" id="pointage_month_label">Choisissez un mois:</label>
-                <input type="month" id="pointage_month" name="pointageMonth" required>
-                <button type="submit" id="search_pointage_month_button">Afficher le Pointage</button>
+                <label for="pointageMonth">Choisissez un mois:</label>
+                <input type="month" id="pointageMonth" name="pointageMonth" required>
+                <button type="submit">Afficher le Pointage</button>
             </form>
         </div>
     </div>
+
+
 
     <div id="attendance_table_container">
         <table id="attendance_table">
