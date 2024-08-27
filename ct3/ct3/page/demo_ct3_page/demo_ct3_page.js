@@ -2,19 +2,34 @@ frappe.pages['demo-ct3-page'].on_page_load = function(wrapper) {
 
 	var page = frappe.ui.make_app_page({
 		parent: wrapper,
-		title: 'system de pointage.',
+		title: 'system de pointage',
 		single_column: true
 	});
 
 
 	$(frappe.render_template("demo_html_page" , {} )).appendTo(page.body);
 
-	initializeAttendanceTable()
+
+	//fetch the employees
+	frappe.db.get_list('Employee' , {
+		fields  : ['employee_name'],
+		filters : {}
+	}).then(employees =>{
+		initializeAttendanceTable(employees.map(employee=>employee.employee_name));
+		//console.error(employees)
+	}).catch(error =>{
+		console.error("Failed to fetch employees:" , error);
+	});
+
+
+	//initializeAttendanceTable(
+	//	["rayan aouf" , "nadji sadam"]
+	//)
 }
 
 
 
-function initializeAttendanceTable() {
+function initializeAttendanceTable( employees ) {
 
 	//to add event listener
 	const form = document.getElementById('pointageForm');
@@ -68,7 +83,7 @@ function initializeAttendanceTable() {
         	}
 
         	// Sample employees data (Replace with dynamic data as needed)
-        	const employees = ['Employee 1', 'Employee 2', 'Employee 3'];
+        	//const employees = ['Employee 1', 'Employee 2', 'Employee 3'];
 
         	// Generate employee rows
         	employees.forEach(employee => {
