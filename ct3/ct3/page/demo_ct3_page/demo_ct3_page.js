@@ -22,9 +22,6 @@ frappe.pages['demo-ct3-page'].on_page_load = function(wrapper) {
 	});
 
 
-	//initializeAttendanceTable(
-	//	["rayan aouf" , "nadji sadam"]
-	//)
 }
 
 
@@ -94,7 +91,12 @@ function initializeAttendanceTable( employees ) {
 
             		for (let day = 1; day <= daysInMonth; day++) {
                 		const td = document.createElement('td');
-                		td.textContent = '-'; // Placeholder for attendance data
+				frappe.db.get_value('Attendance' , { employee_name  : employee , attendance_date : year+"-"+month+"-"+day } , ['status' , 'attendance_date'])
+					.then( r =>{
+						let values = r.message;
+        					console.log(employee + " => " + day +"/"+month+year + values.status + values.attendance_date);
+						td.textContent = values.status === "Present" ?  "+" : values.status === "Absent" ? "-" : "?"; // Placeholder for attendance data
+					})
                 		tr.appendChild(td);
             		}
 
