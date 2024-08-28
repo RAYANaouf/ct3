@@ -81,6 +81,10 @@ button#search_pointage_month_button{
     text-align: center;
 }
 
+#attendance_table td:hover{
+	background      : #e0e0e0 ;
+}
+
 #attendance_table th {
     	background-color: #023047 ;
 	color           : white   ;

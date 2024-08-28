@@ -1,19 +1,19 @@
 {
  "content": null,
- "creation": "2024-08-20 14:40:32.483866",
+ "creation": "2024-08-28 11:23:19.894727",
  "docstatus": 0,
  "doctype": "Page",
  "idx": 0,
- "modified": "2024-08-20 14:40:32.483866",
+ "modified": "2024-08-28 11:23:19.894727",
  "modified_by": "Administrator",
  "module": "ct3",
- "name": "demo-ct3-page",
+ "name": "ct3_page_pointage",
  "owner": "Administrator",
- "page_name": "demo-ct3-page",
+ "page_name": "ct3_page_pointage",
  "roles": [],
  "script": null,
  "standard": "Yes",
  "style": null,
  "system_page": 0,
- "title": "demo page"
+ "title": "Pointage "
 }

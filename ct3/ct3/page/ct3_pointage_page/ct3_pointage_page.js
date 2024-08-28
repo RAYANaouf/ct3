@@ -1,4 +1,4 @@
-frappe.pages['demo-ct3-page'].on_page_load = function(wrapper) {
+frappe.pages['ct3_pointage_page'].on_page_load = function(wrapper) {
 
 	var page = frappe.ui.make_app_page({
 		parent: wrapper,
@@ -7,7 +7,7 @@ frappe.pages['demo-ct3-page'].on_page_load = function(wrapper) {
 	});
 
 
-	$(frappe.render_template("demo_html_page" , {} )).appendTo(page.body);
+	$(frappe.render_template("ct3_pointage_page" , {} )).appendTo(page.body);
 
 
 	//fetch the employees
