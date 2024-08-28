@@ -9,17 +9,15 @@ frappe.pages['ct3_pointage_page'].on_page_load = function(wrapper) {
 
 	$(frappe.render_template("ct3_pointage_page" , {} )).appendTo(page.body);
 
-
-	//fetch the employees
-	frappe.db.get_list('Employee' , {
-		fields  : ['employee_name'],
-		filters : {}
-	}).then(employees =>{
-		initializeAttendanceTable(employees.map(employee=>employee.employee_name));
-		//console.error(employees)
-	}).catch(error =>{
-		console.error("Failed to fetch employees:" , error);
-	});
+        frappe.db.get_list('Employee' , {
+                fields  : ['employee' , 'employee_name'],
+                filters : {}
+        }).then(employees =>{
+		console.error(employees)
+		initializeAttendanceTable(employees);
+        }).catch(error =>{
+                console.error("Failed to fetch employees:" , error);
+        });
 
 
 }
@@ -27,6 +25,7 @@ frappe.pages['ct3_pointage_page'].on_page_load = function(wrapper) {
 
 
 function initializeAttendanceTable( employees ) {
+
 
 	//to add event listener
 	const form = document.getElementById('pointageForm');
@@ -41,7 +40,7 @@ function initializeAttendanceTable( employees ) {
 
 	/********  here we start  **************/
 	//set default month which is the current one.
-	 setDefaultMonth();
+	setDefaultMonth();
 	generateTable();
 
 	//event of the form
@@ -49,6 +48,9 @@ function initializeAttendanceTable( employees ) {
         	event.preventDefault(); // Prevent default form submission
         	generateTable();
    	});
+
+
+
 
 	//generate table function
 	function generateTable() {
@@ -86,12 +88,12 @@ function initializeAttendanceTable( employees ) {
         	employees.forEach(employee => {
             		const tr = document.createElement('tr');
             		const nameTd = document.createElement('td');
-            		nameTd.textContent = employee;
+            		nameTd.textContent = employee.employee_name;
             		tr.appendChild(nameTd);
 
             		for (let day = 1; day <= daysInMonth; day++) {
                 		const td = document.createElement('td');
-				frappe.db.get_value('Attendance' , { employee_name  : employee , attendance_date : year+"-"+month+"-"+day } , ['status' , 'attendance_date'])
+				frappe.db.get_value('Attendance' , { employee  : employee.employee , attendance_date : year+"-"+month+"-"+day } , ['status' , 'attendance_date'])
 					.then( r =>{
 						let values = r.message;
         					console.log(employee + " => " + day +"/"+month+year + values.status + values.attendance_date);
@@ -104,6 +106,8 @@ function initializeAttendanceTable( employees ) {
         	});
     	}
 
+
+
 	function setDefaultMonth(){
 		const today = new Date();
 		const year  = today.getFullYear();
@@ -111,6 +115,18 @@ function initializeAttendanceTable( employees ) {
 		const formattedMonth = `${year}-${month}`;
 
 		monthInput.value = formattedMonth;
+	}
+
+
+	function get_all_employees(){
+		frappe.db.get_list('Employee',{
+			fields:['employee_name'],
+			filters:{}
+		}).then(employees =>{
+			return employees;
+		}).catch(error =>{
+			console.error("Failed to fetch employees:" , error);
+		})
 	}
 
 }
