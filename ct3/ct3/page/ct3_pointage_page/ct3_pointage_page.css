@@ -112,7 +112,7 @@ button#search_pointage_month_button{
 	background    : gray ;
 	border-radius : 6px;
 	color         : white;
-	padding       : 6px 10px 1px 10px ;
+	padding       : 4px 2px 1px 4px ;
 }
 
 #attendance_table tr td div.present {

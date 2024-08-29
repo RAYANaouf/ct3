@@ -125,6 +125,59 @@ function generateTable( daysInMonth , data ) {
 	//to add <td> in the employees rows <tbody></tbody>
         const employeeRows = document.getElementById('employee_rows');
 
+
+	/******************  prepare the dialog  ********************/
+	const dialog = new frappe.ui.Dialog({
+		title  : 'Pointage',
+		fields : [
+			{
+				label     : 'Heure travaillé',
+				fieldname : 'heure_travaille',
+				fieldtype : 'Int'
+			},
+			{
+				label     : "Lieu",
+				fieldname : "lieu",
+				fieldtype : "Select",
+				options   : ["Projet" , "Departement"],
+				default: "Projet",
+				change(){
+					const lieuValue = dialog.get_value('lieu');
+					if(lieuValue === "Projet"){
+						dialog.set_df_property('type' , 'label' , 'Projet');
+					}
+					else{
+						dialog.set_df_property('type' , 'label' , "Departement")
+					}
+					// Refresh the field to update the label
+                			dialog.fields_dict.project.refresh();
+				}
+			},
+			{
+				label     : "Projet",
+				fieldname : "type",
+				fieldtype : "Select",
+			},
+			{
+				label     : "Heure Nuit",
+				fieldname : "heure_nuit",
+				fieldtype : "Int"
+			},
+			{
+				label     : "Mission",
+				fieldname : "mission",
+				fieldtype : "CheckBox"
+			}
+		],
+		size  : 'small',
+		primary_action_label :'Done',
+		primary_action(values){
+			console.log("dialog log : " , values  )
+			dialog.hide();
+		}
+	})
+
+
 	// Clear previous table data
 	daysRow.innerHTML = '';
 	employeeRows.innerHTML = '';
@@ -157,18 +210,14 @@ function generateTable( daysInMonth , data ) {
 			if(!data[employee_id].attendances[day]){
 				const div = document.createElement('div');
 				const p   = document.createElement('p');
-				p.textContent = "Empty";
+				p.textContent = "Non";
 				div.appendChild(p);
 
                                 console.log("clicking outside testing")
 
 				td.addEventListener('click', function() {
                                         console.log("clicking insde testing")
-					frappe.msgprint({
-                                                title: __('Attendance Status'),
-                                                indicator: 'red',
-                                                message: __('Employee is Absent')
-                                        });
+					dialog.show();
                                         console.log("click emplty")
                                 });
 				td.appendChild(div);
