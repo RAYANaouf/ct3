@@ -1,3 +1,10 @@
+/** container width ***/
+.container.page-body{
+	max-width : 97% !important;
+}
+
+
+
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
@@ -99,6 +106,13 @@ button#search_pointage_month_button{
 
 	text-align       : left    ;
 	font-weight      : bold    ;
+}
+
+#attendance_table tr td div.empty {
+	background    : gray ;
+	border-radius : 6px;
+	color         : white;
+	padding       : 6px 10px 1px 10px ;
 }
 
 #attendance_table tr td div.present {

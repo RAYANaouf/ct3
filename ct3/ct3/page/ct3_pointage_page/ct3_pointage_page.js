@@ -157,15 +157,27 @@ function generateTable( daysInMonth , data ) {
 			if(!data[employee_id].attendances[day]){
 				const div = document.createElement('div');
 				const p   = document.createElement('p');
-				p.textContent = "A";
+				p.textContent = "Empty";
 				div.appendChild(p);
+
+                                console.log("clicking outside testing")
+
+				td.addEventListener('click', function() {
+                                        console.log("clicking insde testing")
+					frappe.msgprint({
+                                                title: __('Attendance Status'),
+                                                indicator: 'red',
+                                                message: __('Employee is Absent')
+                                        });
+                                        console.log("click emplty")
+                                });
 				td.appendChild(div);
-				div.classList.add('absent');
+				div.classList.add('empty');
 				tr.appendChild(td);
 				continue;
 			}
+
 			const attendanceRecord = data[employee_id].attendances[day]
-			console.log("not status " , data[employee_id].attendances[day].status)
 
 			if(data[employee_id].attendances[day].status==="Present"){
 				const div = document.createElement('div');
@@ -180,19 +192,20 @@ function generateTable( daysInMonth , data ) {
 				const p   = document.createElement('p');
 				p.textContent = "A";
 				div.appendChild(p);
+                                div.addEventListener('click', function() {
+                                        frappe.msgprint({
+                                                title: __('Attendance Status'),
+                                                indicator: 'red',
+                                                message: __('Employee is Absent')
+                                        });
+                                        console.log("click emplty")
+                                });
 				div.classList.add('absent');
 				td.appendChild(div)
 
 			}
 
-		/*	else {
-				const div = document.createElement('div');
-				const p   = document.createElement('p');
-				p.textContent("A");
-				div.appendChild(p);
-				td.appendChild(div)
-			}
-*/			tr.appendChild(td);
+			tr.appendChild(td);
 
 		}
 		employeeRows.appendChild(tr);
