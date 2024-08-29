@@ -160,6 +160,7 @@ function generateTable( daysInMonth , data ) {
 				p.textContent = "A";
 				div.appendChild(p);
 				td.appendChild(div);
+				div.classList.add('absent');
 				tr.appendChild(td);
 				continue;
 			}
@@ -171,6 +172,7 @@ function generateTable( daysInMonth , data ) {
 				const p   = document.createElement('p');
 				p.textContent = "P";
 				div.appendChild(p);
+				div.classList.add('present');
 				td.appendChild(div)
 			}
 			else{
@@ -178,6 +180,7 @@ function generateTable( daysInMonth , data ) {
 				const p   = document.createElement('p');
 				p.textContent = "A";
 				div.appendChild(p);
+				div.classList.add('absent');
 				td.appendChild(div)
 
 			}

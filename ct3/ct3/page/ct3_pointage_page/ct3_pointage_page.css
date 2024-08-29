@@ -76,9 +76,10 @@ button#search_pointage_month_button{
 
 #attendance_table th,
 #attendance_table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
+	min-width        : 50px;
+ 	border       : 1px solid #ddd;
+    	padding      : 8px;
+    	text-align   : center;
 }
 
 #attendance_table td:hover{
@@ -92,12 +93,29 @@ button#search_pointage_month_button{
 }
 
 #attendance_table td:first-child {
+
    	background-color : #219EBC ;
 	color            : black   ;
 
 	text-align       : left    ;
 	font-weight      : bold    ;
 }
+
+#attendance_table tr td div.present {
+	width      : 20px;
+	background : green ;
+	border-radius : 6px;
+	color : white;
+}
+
+
+#attendance_table tr td div.absent {
+	width         : 20px  ;
+	background    : red   ;
+	border-radius : 6px   ;
+	color         : white ;
+}
+
 
 @media screen and (max-width: 600px) {
     #top_action_bar {
