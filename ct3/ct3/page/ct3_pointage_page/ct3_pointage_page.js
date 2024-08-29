@@ -9,10 +9,7 @@ frappe.pages['ct3_pointage_page'].on_page_load = function(wrapper) {
 
 	$(frappe.render_template("ct3_pointage_page" , {} )).appendTo(page.body);
 
-
 	main();
-
-
 
 }
 
@@ -62,7 +59,7 @@ function main(){
 		}).then(attendancesRecords => {
 			generateTable(daysInMonth , mapping(employees , attendancesRecords));
 		}).catch(error =>{
-			console.error("erooooooooooooooor" , error);
+			console.error("Failed to fetch attendance" , error);
 		})
 
         }).catch(error =>{
@@ -123,7 +120,6 @@ function mapping(employees , attendanceRecords){
 function generateTable( daysInMonth , data ) {
 
 
-
 	//to add <th> in the first row <thead> <tr> </tr><thead>
         const daysRow = document.getElementById('days_row');
 	//to add <td> in the employees rows <tbody></tbody>
@@ -152,6 +148,50 @@ function generateTable( daysInMonth , data ) {
 		const employee_name = document.createElement('td');
 		employee_name.textContent = data[employee_id].employee_name;
 		tr.appendChild(employee_name);
+
+		console.log("look" , data[employee_id]);
+
+		for(let day = 1 ; day <= daysInMonth ; day++){
+
+			const td = document.createElement('td');
+			if(!data[employee_id].attendances[day]){
+				const div = document.createElement('div');
+				const p   = document.createElement('p');
+				p.textContent = "A";
+				div.appendChild(p);
+				td.appendChild(div);
+				tr.appendChild(td);
+				continue;
+			}
+			const attendanceRecord = data[employee_id].attendances[day]
+			console.log("not status " , data[employee_id].attendances[day].status)
+
+			if(data[employee_id].attendances[day].status==="Present"){
+				const div = document.createElement('div');
+				const p   = document.createElement('p');
+				p.textContent = "P";
+				div.appendChild(p);
+				td.appendChild(div)
+			}
+			else{
+				const div = document.createElement('div');
+				const p   = document.createElement('p');
+				p.textContent = "A";
+				div.appendChild(p);
+				td.appendChild(div)
+
+			}
+
+		/*	else {
+				const div = document.createElement('div');
+				const p   = document.createElement('p');
+				p.textContent("A");
+				div.appendChild(p);
+				td.appendChild(div)
+			}
+*/			tr.appendChild(td);
+
+		}
 		employeeRows.appendChild(tr);
 	})
 
