@@ -244,7 +244,17 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
 			{
 				label     : 'Heure travaillé',
 				fieldname : 'heure_travaille',
-				fieldtype : 'Int'
+				fieldtype : 'Int',
+				default   : 8,
+				change(){
+					const working_hours = dialog.get_value('heure_travaille')
+					if(working_hours == 0){
+						dialog.set_df_property('motif_jour','hidden',0)
+					}
+					else{
+						dialog.set_df_property('motif_jour','hidden',1)
+					}
+				}
 			},
 			{
 				label     : "Lieu",
@@ -277,8 +287,15 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
 			{
 				label     : "Mission",
 				fieldname : "mission",
-				fieldtype : "CheckBox"
-			}
+				fieldtype : "Checkbox"
+			},
+			{
+                		label: "Motif jour",
+                		fieldname: "motif_jour",
+		                fieldtype: "Select",
+                		options: ["Malade", "Férie", "Autre"],
+                		hidden: 1 // Initially hidden
+            		}
 		],
 		size  : 'small',
 		primary_action_label :'Done',
