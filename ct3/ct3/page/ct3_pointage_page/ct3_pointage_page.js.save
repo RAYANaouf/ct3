@@ -9,8 +9,6 @@ frappe.pages['ct3_pointage_page'].on_page_load = function(wrapper) {
 
 	$(frappe.render_template("ct3_pointage_page" , {} )).appendTo(page.body);
 
-
-
 	main();
 
 }
@@ -20,9 +18,9 @@ frappe.pages['ct3_pointage_page'].on_page_load = function(wrapper) {
 function main(){
 
 
+
 	//to add event listener
 	const form = document.getElementById('pointageForm');
-
     	//to get the value the user inter
 	const monthInput = document.getElementById('pointage_month');
 
@@ -30,18 +28,13 @@ function main(){
 	//event of the form
 	form.addEventListener('submit', function(event) {
         	event.preventDefault(); // Prevent default form submission
-        	start_work();
+        	generateTable();
    	});
 
-	//set default month which is the current one.
-	setDefaultMonth(monthInput);
-
-
-	start_work();
-
-	function start_work(){
 
 	/********  here we start  **************/
+	//set default month which is the current one.
+	setDefaultMonth(monthInput);
 
 	//get the value the user intered
 	const monthValue = monthInput.value;
@@ -53,10 +46,6 @@ function main(){
 	const daysInMonth = new Date(year, month, 0).getDate();
 
 
-	// Calculate the start and end dates of the month  to filtring the attendance result.
-	const startDate = new Date(year, month - 1, 1).toISOString().split('T')[0];
-	const endDate = new Date(year, month, 0).toISOString().split('T')[0];
-
 
 
         frappe.db.get_list('Employee' , {
@@ -66,10 +55,9 @@ function main(){
 		frappe.db.get_list('Attendance' , {
 			fields  : ['employee' , 'employee_name' , 'attendance_date' , 'working_hours' , 'status' , 'leave_type' , 'in_time' , 'out_time' , 'late_entry' ],
                 	filters: {
-            			attendance_date: ['between', [startDate, endDate]]
 			}
 		}).then(attendancesRecords => {
-			generateTable(year , month , daysInMonth , mapping(employees , attendancesRecords));
+			generateTable(daysInMonth , mapping(employees , attendancesRecords));
 		}).catch(error =>{
 			console.error("Failed to fetch attendance" , error);
 		})
@@ -78,8 +66,6 @@ function main(){
                 console.error("Failed to fetch employees:" , error);
         });
 
-
-	}
 
 
 }
@@ -114,7 +100,7 @@ function mapping(employees , attendanceRecords){
 		if(attendanceMap[employee_id]){
 			attendanceMap[employee_id].attendances[attendance_date]={
 				status        : attendanceRecord.status,
-				working_hours : attendanceRecord.working_hours
+				working_hours : attendanceRecord.in_time
 			}
 		}
 	})
@@ -131,7 +117,7 @@ function mapping(employees , attendanceRecords){
 
 
 	//generate table function
-function generateTable( year , month , daysInMonth , data ) {
+function generateTable( daysInMonth , data ) {
 
 
 	//to add <th> in the first row <thead> <tr> </tr><thead>
@@ -158,6 +144,7 @@ function generateTable( year , month , daysInMonth , data ) {
 	}
 
 
+	console.log(data)
 	Object.keys(data).forEach(employee_id =>{
 		const tr            = document.createElement('tr');
 		const employee_name = document.createElement('td');
@@ -171,10 +158,16 @@ function generateTable( year , month , daysInMonth , data ) {
 			const td = document.createElement('td');
 			if(!data[employee_id].attendances[day]){
 				const div = document.createElement('div');
-				div.textContent = "Non";
+				const p   = document.createElement('p');
+				p.textContent = "Non";
+				div.appendChild(p);
+
+                                console.log("clicking outside testing")
 
 				td.addEventListener('click', function() {
-					create_dialog( year , month , daysInMonth , data , year+"-"+month+"-"+day).show();
+                                        console.log("clicking insde testing")
+					create_dialog().show();
+                                        console.log("click emplty")
                                 });
 				td.appendChild(div);
 				div.classList.add('empty');
@@ -186,19 +179,10 @@ function generateTable( year , month , daysInMonth , data ) {
 
 			if(data[employee_id].attendances[day].status==="Present"){
 				const div = document.createElement('div');
-				const working_hours   = document.createElement('div');
-				working_hours.textContent = 	data[employee_id].attendances[day].working_hours
-
-				div.appendChild(working_hours);
+				const p   = document.createElement('p');
+				p.textContent = "P";
+				div.appendChild(p);
 				div.classList.add('present');
-                                div.addEventListener('click', function() {
-                                        frappe.msgprint({
-                                                title: __('Attendance Status'),
-                                                indicator: 'red',
-                                                message: __('Attendance is already exist!')
-                                        });
-                                });
-
 				td.appendChild(div)
 			}
 			else{
@@ -206,6 +190,14 @@ function generateTable( year , month , daysInMonth , data ) {
 				const p   = document.createElement('p');
 				p.textContent = "A";
 				div.appendChild(p);
+                                div.addEventListener('click', function() {
+                                        frappe.msgprint({
+                                                title: __('Attendance Status'),
+                                                indicator: 'red',
+                                                message: __('Employee is Absent')
+                                        });
+                                        console.log("click emplty")
+                                });
 				div.classList.add('absent');
 				td.appendChild(div)
 
@@ -221,7 +213,13 @@ function generateTable( year , month , daysInMonth , data ) {
 
 
 
-function create_dialog( year , month , daysInMonth , data , date){
+function create_dialog(){
+
+
+	const projects = frappe.db.get_list('Project' ,{
+		fields : ""
+	})
+
 	/******************  prepare the dialog  ********************/
 	return dialog = new frappe.ui.Dialog({
 		title  : 'Pointage',
@@ -269,18 +267,6 @@ function create_dialog( year , month , daysInMonth , data , date){
 		primary_action_label :'Done',
 		primary_action(values){
 			console.log("dialog log : " , values  )
-
-			frappe.db.insert({
-				doctype  : 'Attendance',
-				employee : "HR-EMP-00001"  ,
-				attendance_date : date,
-				status   : 'Present' ,
-				working_hours   : values.heure_travaille
-				//shift           : values.type
-			}).then(doc =>{
-				generateTable( year , month , daysInMonth , data )
-			})
-
 			dialog.hide();
 		}
 	})
