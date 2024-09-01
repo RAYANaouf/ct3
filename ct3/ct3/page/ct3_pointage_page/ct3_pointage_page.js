@@ -17,6 +17,13 @@ frappe.pages['ct3_pointage_page'].on_page_load = function(wrapper) {
 
 
 
+let projects_list = [];
+let departments_list = [];
+let projects_fetched = false;
+let departments_fetched = false;
+
+
+
 function main(){
 
 
@@ -32,6 +39,34 @@ function main(){
         	event.preventDefault(); // Prevent default form submission
         	start_work();
    	});
+
+
+
+	    /******************  Fetch Projects and Departments (only once)  ********************/
+	if (!projects_fetched) {
+        	frappe.db.get_list('Project', {
+           		filters: {
+                		status: "Open" // Or "Active", depending on your needs
+            		},
+            		fields: ['name' , 'project_name']
+        	}).then(projects => {
+			projects_list   = projects;
+            		projects_fetched = true;
+        	});
+    	}
+	if (!departments_fetched) {
+        	frappe.db.get_list('Department', {
+            		filters: {
+                		is_group: 0 // Fetch only non-group departments
+            		},
+            		fields: ['name']
+        	}).then(departments => {
+            		departments_list = departments.map(dept => dept.name);
+            		departments_fetched = true;
+        	});
+	}
+
+
 
 	//set default month which is the current one.
 	setDefaultMonth(monthInput);
@@ -74,11 +109,15 @@ function start_work(){
                 filters : {}
         }).then(employees =>{
 		frappe.db.get_list('Attendance' , {
-			fields  : ['employee' , 'employee_name' , 'attendance_date' , 'working_hours' , 'status' , 'leave_type' , 'in_time' , 'out_time' , 'custom_heure_nuit' ],
+			fields  : ['employee' , 'employee_name' , 'attendance_date' , 'working_hours' , 'status' , 'leave_type' , 'in_time' , 'out_time' , 'custom_heure_nuit' , 'custom_project' , 'department' ],
                 	filters: {
             			attendance_date: ['between', [startDate, endDate]]
-			}
+			},
+    			limit_page_length: 40,
+			limit_start: 0
 		}).then(attendancesRecords => {
+			console.log("all data between" , startDate , " and " , endDate , " here : " , attendancesRecords  )
+
 			generateTable(year , month , daysInMonth , mapping(employees , attendancesRecords));
 		}).catch(error =>{
 			console.error("Failed to fetch attendance" , error);
@@ -90,48 +129,6 @@ function start_work(){
 
 
 }
-
-
-
-function setDefaultMonth(monthInput){
-	const today = new Date();
-	const year  = today.getFullYear();
-	const month = String(today.getMonth() + 1).padStart(2,'0');
-	const formattedMonth = `${year}-${month}`;
-	monthInput.value = formattedMonth;
-}
-
-
-
-function mapping(employees , attendanceRecords){
-	const attendanceMap = {}
-
-	employees.forEach(employee =>{
-		attendanceMap[employee.employee] = {
-			employee_name : employee.employee_name,
-			attendances   : {}
-		}
-	})
-
-	attendanceRecords.forEach( attendanceRecord => {
-		const employee_id     = attendanceRecord.employee;
-		const attendance_date = new Date(attendanceRecord.attendance_date).getDate();
-
-		if(attendanceMap[employee_id]){
-			attendanceMap[employee_id].attendances[attendance_date]={
-				status        : attendanceRecord.status,
-				working_hours : attendanceRecord.working_hours,
-				heure_nuit    : attendanceRecord.custom_heure_nuit
-			}
-		}
-	})
-
-
-
-	return attendanceMap;
-}
-
-
 
 
 
@@ -238,21 +235,48 @@ function generateTable( year , month , daysInMonth , data ) {
 
 function create_dialog( year , month , daysInMonth , data , employee_id , date){
 	/******************  prepare the dialog  ********************/
-	return dialog = new frappe.ui.Dialog({
+	const dialog = new frappe.ui.Dialog({
 		title  : 'Pointage',
 		fields : [
 			{
-				label     : 'Heure travaillé',
+				label     : 'Heure travaillé (H)',
 				fieldname : 'heure_travaille',
-				fieldtype : 'Int',
+				fieldtype : 'Float',
 				default   : 8,
 				change(){
 					const working_hours = dialog.get_value('heure_travaille')
-					if(working_hours == 0){
+					const heure_nuit    = dialog.get_value('heure_nuit')
+
+					if(working_hours == 0 && heure_nuit == 0){
 						dialog.set_df_property('motif_jour','hidden',0)
+						dialog.set_df_property('lieu','hidden',1)
+						dialog.set_df_property('type','hidden',1)
 					}
 					else{
 						dialog.set_df_property('motif_jour','hidden',1)
+						dialog.set_df_property('lieu','hidden',0)
+						dialog.set_df_property('type','hidden',0)
+					}
+				}
+			},
+			{
+				label     : "Heure Nuit (H)",
+				fieldname : "heure_nuit",
+				fieldtype : 'Float',
+				default   : 0.0,
+				change(){
+					const working_hours = dialog.get_value('heure_travaille')
+					const heure_nuit    = dialog.get_value('heure_nuit')
+
+					if(working_hours == 0 && heure_nuit == 0){
+						dialog.set_df_property('motif_jour','hidden',0)
+						dialog.set_df_property('lieu','hidden',1)
+						dialog.set_df_property('type','hidden',1)
+					}
+					else{
+						dialog.set_df_property('motif_jour','hidden',1)
+						dialog.set_df_property('lieu','hidden',0)
+						dialog.set_df_property('type','hidden',0)
 					}
 				}
 			},
@@ -266,56 +290,154 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
 					const lieuValue = dialog.get_value('lieu');
 					if(lieuValue === "Projet"){
 						dialog.set_df_property('type' , 'label' , 'Projet');
+						dialog.set_df_property('type' , 'options' , projects_list)
+						if(projects_list.length > 0){
+							dialog.set_value('type' , projects_list[0])
+						}
 					}
 					else{
 						dialog.set_df_property('type' , 'label' , "Departement")
+						dialog.set_df_property('type' , 'options' , departments_list)
+						if(departments_list.length > 0){
+							dialog.set_value('type' , departments_list[0])
+						}
 					}
 					// Refresh the field to update the label
-                			dialog.fields_dict.project.refresh();
+                			dialog.fields_dict.type.refresh();
 				}
 			},
 			{
 				label     : "Projet",
 				fieldname : "type",
 				fieldtype : "Select",
-			},
-			{
-				label     : "Heure Nuit",
-				fieldname : "heure_nuit",
-				fieldtype : "Int"
+				options   : projects_list.map(proj => proj.project_name),
+				default   : projects_list.length > 0 ? projects_list[0].project_name : "",
 			},
 			{
 				label     : "Mission",
 				fieldname : "mission",
-				fieldtype : "Checkbox"
+				fieldtype : "Check"
 			},
 			{
                 		label: "Motif jour",
                 		fieldname: "motif_jour",
 		                fieldtype: "Select",
-                		options: ["Malade", "Férie", "Autre"],
+                		options: ["Congé sans solde","Congé annuel","Maladi","Récupeartion","Non validée","Absence Autorisée","Absence non Autorisée","Férié","Chomé payé","Formation", "Autre"],
                 		hidden: 1 // Initially hidden
             		}
 		],
 		size  : 'small',
 		primary_action_label :'Done',
 		primary_action(values){
-			console.log("dialog log : " , values  )
 
-			frappe.db.insert({
-				doctype    : 'Attendance' ,
-				employee   : employee_id  ,
-				attendance_date : date    ,
-				status     : 'Present'    ,
-				custom_heure_nuit : values.heure_nuit ,
-				working_hours     : values.heure_travaille
-			}).then(doc =>{
-				 start_work()
-			})
 
-			dialog.hide();
+			if(values.lieu == "Projet"){
+
+				console.log("type is" , values.type )
+
+				frappe.db.insert({
+					doctype         : 'Attendance' ,
+					employee        : employee_id  ,
+					attendance_date : date         ,
+					status          : 'Present'    ,
+					custom_heure_nuit : values.heure_nuit ,
+					working_hours     : values.heure_travaille,
+					custom_project    : getProjectIdByName(values.type)
+				}).then(doc =>{
+					start_work()
+					dialog.hide();
+				}).catch(error =>{
+                	        	console.error("Failed to save the attendance" , error);
+					dialog.hide();
+                		})
+
+			}
+			else{
+
+				console.log("type is" , values.type )
+
+				frappe.db.insert({
+					doctype         : 'Attendance' ,
+					employee        : employee_id  ,
+					attendance_date : date         ,
+					status          : 'Present'    ,
+					custom_heure_nuit : values.heure_nuit ,
+					working_hours     : values.heure_travaille,
+					custom_department : values.type
+				}).then(doc =>{
+					console.log("theeeeee docuuuuuuuuuuument" , doc )
+
+					start_work()
+					dialog.hide();
+				}).catch(error =>{
+                	        	console.error("Failed to save the attendance" , error);
+					dialog.hide();
+                		})
+
+			}
+
+
 		}
 	})
 
 
+
+	return dialog
+
+}
+
+
+
+
+
+
+
+
+/****************************   tools methods    ******************************************/
+
+function setDefaultMonth(monthInput){
+	const today = new Date();
+	const year  = today.getFullYear();
+	const month = String(today.getMonth() + 1).padStart(2,'0');
+	const formattedMonth = `${year}-${month}`;
+	monthInput.value = formattedMonth;
+}
+
+
+
+function mapping(employees , attendanceRecords){
+	const attendanceMap = {}
+
+	employees.forEach(employee =>{
+		attendanceMap[employee.employee] = {
+			employee_name : employee.employee_name,
+			attendances   : {}
+		}
+	})
+
+	attendanceRecords.forEach( attendanceRecord => {
+		const employee_id     = attendanceRecord.employee;
+		const attendance_date = new Date(attendanceRecord.attendance_date).getDate();
+
+		if(attendanceMap[employee_id]){
+			attendanceMap[employee_id].attendances[attendance_date]={
+				status        : attendanceRecord.status,
+				working_hours : attendanceRecord.working_hours,
+				heure_nuit    : attendanceRecord.custom_heure_nuit,
+				project       : attendanceRecord.custom_project,
+				department    : attendanceRecord.department
+			}
+		}
+	})
+
+
+
+	return attendanceMap;
+}
+
+
+
+
+function getProjectIdByName( project_name){
+	return projects_list.find(proj => proj.project_name === project_name).name
 }
