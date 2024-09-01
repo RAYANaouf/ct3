@@ -110,11 +110,10 @@ function start_work(){
         }).then(employees =>{
 		frappe.db.get_list('Attendance' , {
 			fields  : ['employee' , 'employee_name' , 'attendance_date' , 'working_hours' , 'status' , 'leave_type' , 'in_time' , 'out_time' , 'custom_heure_nuit' , 'custom_project' , 'department' ],
-                	filters: {
+                	filters : {
             			attendance_date: ['between', [startDate, endDate]]
 			},
-    			limit_page_length: 40,
-			limit_start: 0
+			limit   : 10000
 		}).then(attendancesRecords => {
 			console.log("all data between" , startDate , " and " , endDate , " here : " , attendancesRecords  )
 
