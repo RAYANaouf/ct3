@@ -213,10 +213,12 @@ function generateTable( year , month , daysInMonth , data ) {
 				td.appendChild(div)
 			}
 			else{
-				const div = document.createElement('div');
-				const p   = document.createElement('p');
-				p.textContent = "A";
-				div.appendChild(p);
+				const div      = document.createElement('div');
+				const absent   = document.createElement('div');
+				absent.textContent  = "A";
+				div.appendChild(absent);
+
+				div.classList.add('container');
 				div.classList.add('absent');
 				td.appendChild(div)
 
@@ -330,6 +332,10 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
 		primary_action(values){
 
 
+			const status = (values.heure_nuit ==0 && values.heure_travaille == 0) ? 'Absent' : 'Present'
+
+			console.log("status" , status)
+
 			if(values.lieu == "Projet"){
 
 				console.log("type is" , values.type )
@@ -338,7 +344,7 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
 					doctype         : 'Attendance' ,
 					employee        : employee_id  ,
 					attendance_date : date         ,
-					status          : 'Present'    ,
+					status          : status       ,
 					custom_heure_nuit : values.heure_nuit ,
 					working_hours     : values.heure_travaille,
 					custom_project    : getProjectIdByName(values.type)

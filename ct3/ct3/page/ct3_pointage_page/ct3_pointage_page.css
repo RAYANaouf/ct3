@@ -125,6 +125,7 @@ button#search_pointage_month_button{
 	display    : flex  ;
 	flex-direction  : column ;
 	justify-content : center ;  
+	align-items     : center ;
 }
 
 #attendance_table tr td div div.working_hours {
