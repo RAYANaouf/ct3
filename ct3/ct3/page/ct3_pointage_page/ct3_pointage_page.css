@@ -116,16 +116,29 @@ button#search_pointage_month_button{
 	padding       : 4px  ;
 }
 
-#attendance_table tr td div.present {
+#attendance_table tr td div.container {
 	width      : 100%  ;
 	height     : 100%  ;
-	background : green ;
 	border-radius : 6px;
 	color      : black ;
 
 	display    : flex  ;
 	flex-direction  : column ;
 	justify-content : center ;  
+}
+
+#attendance_table tr td div div.working_hours {
+	width      : 100%   ;
+	background : green  ;
+	border-radius : 6px ;
+}
+
+#attendance_table tr td div div.heure_nuit {
+	width      : 100%   ;
+	margin-top : 4px    ;
+	background : black  ;
+	color      : white  ;
+	border-radius : 6px ;
 }
 
 
