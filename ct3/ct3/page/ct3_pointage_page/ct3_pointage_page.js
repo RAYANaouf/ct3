@@ -110,12 +110,6 @@ function start_work(){
 	//to add <td> in the employees rows <tbody></tbody>
         const employeeRows = document.getElementById('employee_rows');
 
-	const multi_select_mode = document.getElementById('multi_select_mode')
-	multi_select_mode.addEventListener("click" , function(){
-		generateTable(year , month , daysInMonth , data)
-		selected_box = []
-		console.log("multi select mode : " , multi_select_mode.checked)
-	})
 
 
 	const pointage_btn = document.getElementById('pointage_btn')
@@ -136,8 +130,16 @@ function start_work(){
 			console.log("all data between" , startDate , " and " , endDate , " here : " , attendancesRecords  )
 
 			pointage_btn.addEventListener("click" , function(){
-				create_multi_selection_dialog( year , month , daysInMonth ,  mapping(employees , attendancesRecords) , selected_box[0].employee_id , selected_box[0].day).show()
+				create_multi_selection_dialog( year , month , daysInMonth ,  mapping(employees , attendancesRecords) ).show()
 			})
+
+			const multi_select_mode = document.getElementById('multi_select_mode')
+				multi_select_mode.addEventListener("click" , function(){
+				generateTable(year , month , daysInMonth , mapping(employees , attendancesRecords))
+				selected_box = []
+				console.log("multi select mode : " , multi_select_mode.checked)
+			})
+
 			generateTable(year , month , daysInMonth , mapping(employees , attendancesRecords));
 		}).catch(error =>{
 			console.error("Failed to fetch attendance" , error);
@@ -191,8 +193,8 @@ function generateTable( year , month , daysInMonth , data ) {
 
 					if(multi_select_mode.checked){
 						const date = year +"-"+ month +"-"+day
-						selectItem({employee_id , day});
-						if(box_exist({employee_id , day})){
+						selectItem({employee_id , date});
+						if(box_exist({employee_id , date})){
 							td.classList.add('selectedBox');
 						}
 						else{
@@ -467,7 +469,7 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
 
 //create dialog for multi selection function
 
-function create_multi_selection_dialog( year , month , daysInMonth , data , selected){
+function create_multi_selection_dialog( year , month , daysInMonth , data ){
 	/******************  prepare the dialog  ********************/
 	const dialog = new frappe.ui.Dialog({
 		title  : 'Pointage',
@@ -571,7 +573,8 @@ function create_multi_selection_dialog( year , month , daysInMonth , data , sele
 
 			let count = 0 ;
 			if(status == "Absent"){
-				selected.forEach(item=>{
+				selected_box.forEach(item=>{
+					console.log("this is for the date " , item.date)
 					frappe.db.insert({
 						doctype         : 'Attendance' ,
 						employee        : item.employee_id  ,
@@ -580,7 +583,7 @@ function create_multi_selection_dialog( year , month , daysInMonth , data , sele
 						custom_motif    : values.motif_jour
 					}).then(doc =>{
 						count += 1 ;
-						if(count == selected.length){
+						if(count == selected_box.length){
 							start_work()
 							dialog.hide();
 						}
