@@ -20,7 +20,7 @@ body {
         height         : 60px    ;
 
 	display        : flex    ;
-	justify-content: center  ;
+	justify-content: space-around ;
         align-items   : center   ;
 	margin-bottom : 20px     ;
 }
@@ -57,6 +57,10 @@ input#pointage_month{
 	border-radius : 6px      ;
 }
 
+
+
+
+
 button#search_pointage_month_button{
 	height        : 35px     ;
 	background    : #023047  ;
@@ -68,6 +72,29 @@ button#search_pointage_month_button{
 	border        : none     ;
 }
 
+
+label#multi_select_mode_label{
+	height        : 100%     ;
+	color         : #023047  ;
+	font-size     : 20px     ;
+	font-weight   : 800      ;
+
+	padding-top   : 8px      ;
+	margin-right  : 16px     ;
+}
+
+
+
+button#pointage_btn{
+	height        : 35px     ;
+	background    : #023047  ;
+	color         : white    ;
+
+	padding       : 5px 16px ;
+	border-radius : 6px      ;
+	outline       : none     ;
+	border        : none     ;
+}
 
 
 
@@ -108,6 +135,10 @@ button#search_pointage_month_button{
 	font-weight      : bold    ;
 }
 
+#attendance_table tr td.selectedBox {
+	background    : #02304796 ;
+}
+
 #attendance_table tr td div.empty {
 	background    : gray ;
 	border-radius : 6px  ;
@@ -127,7 +158,6 @@ button#search_pointage_month_button{
 	justify-content : center ;  
 	align-items     : center ;
 }
-
 #attendance_table tr td div div.working_hours {
 	width      : 100%   ;
 	background : green  ;
