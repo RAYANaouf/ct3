@@ -112,7 +112,7 @@ button#pointage_btn{
 #attendance_table td {
 	min-width        : 50px;
  	border       : 1px solid #ddd;
-    	padding      : 2px;
+    	padding      : 2px 4px;
     	text-align   : center;
 }
 
@@ -174,7 +174,8 @@ button#pointage_btn{
 
 
 #attendance_table tr td div.absent {
-	width         : 20px  ;
+	width         : 100%  ; 
+	padding       : 4px   ;
 	background    : red   ;
 	border-radius : 6px   ;
 	color         : white ;
