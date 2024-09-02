@@ -37,67 +37,53 @@ let selected_box = []
 function main(){
 
 
-	//to add event listener
-	const form = document.getElementById('pointageForm');
-    	//to get the value the user inter
-	const monthInput = document.getElementById('pointage_month');
 
+	/*const multi_select_mode = document.getElementById('multi_select_mode')
+		multi_select_mode.addEventListener("click" , function(){
+			generateTable(year , month , daysInMonth , mapping(all_employees , all_attendances))
+			selected_box = []
+			console.log("multi select mode : " , multi_select_mode.checked)
+		})
+*/
+
+
+	    /******************  Fetch Projects and Departments (only once)  ********************/
+
+	get_all_project_department();
+
+	//set default month which is the current one.
+	setDefaultMonth();
+
+
+
+    	//to get the value the user inter && get the value the user intered && array destructuring syntax
+	const [year , month] = document.getElementById('pointage_month').value.split('-').map(Number);
+
+
+	//to add event listener
+	const form = document.getElementById('pointageForm')
 
 
 	//event of the form
 	form.addEventListener('submit', function(event) {
         	event.preventDefault(); // Prevent default form submission
-        	start_work();
+        	fetchTableDataAndDrawIt();
    	});
 
 
-const pointage_btn = document.getElementById('pointage_btn')
 
 
-pointage_btn.addEventListener("click" , function(){
-	console.log("clickinnnn")
-	create_multi_selection_dialog( year , month , daysInMonth ,  mapping(all_employees , all_attendances) ).show()
-})
+	const pointage_btn = document.getElementById('pointage_btn')
 
-const multi_select_mode = document.getElementById('multi_select_mode')
-	multi_select_mode.addEventListener("click" , function(){
-		generateTable(year , month , daysInMonth , mapping(all_employees , all_attendances))
-		selected_box = []
-		console.log("multi select mode : " , multi_select_mode.checked)
+
+	pointage_btn.addEventListener("click" , function(){
+		console.log("clickinnnn")
+		create_multi_selection_dialog().show()
 	})
 
 
-	    /******************  Fetch Projects and Departments (only once)  ********************/
-	if (!projects_fetched) {
-        	frappe.db.get_list('Project', {
-           		filters: {
-                		status: "Open" // Or "Active", depending on your needs
-            		},
-            		fields: ['name' , 'project_name']
-        	}).then(projects => {
-			projects_list   = projects;
-            		projects_fetched = true;
-        	});
-    	}
-	if (!departments_fetched) {
-        	frappe.db.get_list('Department', {
-            		filters: {
-                		is_group: 0 // Fetch only non-group departments
-            		},
-            		fields: ['name']
-        	}).then(departments => {
-            		departments_list = departments.map(dept => dept.name);
-            		departments_fetched = true;
-        	});
-	}
 
-
-
-	//set default month which is the current one.
-	setDefaultMonth(monthInput);
-
-
-	start_work();
+	fetchTableDataAndDrawIt();
 
 
 
@@ -105,34 +91,16 @@ const multi_select_mode = document.getElementById('multi_select_mode')
 
 
 
-function start_work(){
+function fetchTableDataAndDrawIt(){
 
 
-    	//to get the value the user inter
-	const monthInput = document.getElementById('pointage_month');
-
-	/********  here we start  **************/
-
-	//get the value the user intered
-	const monthValue = monthInput.value;
-
-	//array destructuring syntax
-	const [year, month] = monthValue.split('-').map(Number);
-
-       	//month var is 0-indexed and when inter day as 0 it return the last day of the previous month  and since we inter the month not 0-indexed like jan ==> 1 so it will thought that 1 reffer to fiv and will return the last day in jav month.
-	const daysInMonth = new Date(year, month, 0).getDate();
+    	//to get the value the user inter && get the value the user intered && array destructuring syntax
+	const [year , month] = document.getElementById('pointage_month').value.split('-').map(Number);
 
 
 	// Calculate the start and end dates of the month  to filtring the attendance result.
 	const startDate = new Date(year, month - 1, 1).toISOString().split('T')[0];
 	const endDate = new Date(year, month, 0).toISOString().split('T')[0];
-
-
-
-	//to add <th> in the first row <thead> <tr> </tr><thead>
-        const daysRow = document.getElementById('days_row');
-	//to add <td> in the employees rows <tbody></tbody>
-        const employeeRows = document.getElementById('employee_rows');
 
 
 
@@ -153,8 +121,8 @@ function start_work(){
 		}).then(attendancesRecords => {
 			all_employees = employees
 			all_attendances = attendancesRecords
-			console.log("all data between" , startDate , " and " , endDate , " here : " , attendancesRecords  )
-			generateTable(year , month , daysInMonth , mapping(employees , attendancesRecords));
+			//console.log("all data between" , startDate , " and " , endDate , " here : " , attendancesRecords  )
+			generateTable();
 		}).catch(error =>{
 			console.error("Failed to fetch attendance" , error);
 		})
@@ -166,8 +134,41 @@ function start_work(){
 
 
 
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/****************************   tools methods    ******************************************/
+
+
+
+//generate function
+
 //generate table function
-function generateTable( year , month , daysInMonth , data ) {
+function generateTable() {
+
+
+    	//to get the value the user inter
+	const [year , month] = document.getElementById('pointage_month').value.split('-').map(Number);
+
+
+       	//month var is 0-indexed and when inter day as 0 it return the last day of the previous month  and since we inter the month not 0-indexed like jan ==> 1 so it will thought that 1 reffer to fiv and will return the last day in jav month.
+	const daysInMonth = new Date(year, month, 0).getDate();
+
+
+	//to add <th> in the first row <thead> <tr> </tr><thead>
+        const daysRow = document.getElementById('days_row');
+	//to add <td> in the employees rows <tbody></tbody>
+        const employeeRows = document.getElementById('employee_rows');
 
 
 	// Clear previous table data
@@ -185,6 +186,10 @@ function generateTable( year , month , daysInMonth , data ) {
     		th.textContent = day;
     		daysRow.appendChild(th);
 	}
+
+
+	const data = mapping(all_employees , all_attendances)
+
 
 	Object.keys(data).forEach(employee_id =>{
 		const tr            = document.createElement('tr');
@@ -288,22 +293,34 @@ function generateTable( year , month , daysInMonth , data ) {
 }
 
 
+
+//fetch project and departments
+
+function get_all_project_department(){
+	if (!projects_fetched) {
+        	frappe.db.get_list('Project', {
+           		filters: {
+                		status: "Open" // Or "Active", depending on your needs
+            		},
+            		fields: ['name' , 'project_name']
+        	}).then(projects => {
+			projects_list   = projects;
+            		projects_fetched = true;
+        	});
+    	}
+	if (!departments_fetched) {
+        	frappe.db.get_list('Department', {
+            		filters: {
+                		is_group: 0 // Fetch only non-group departments
+            		},
+            		fields: ['name']
+        	}).then(departments => {
+            		departments_list = departments.map(dept => dept.name);
+            		departments_fetched = true;
+        	});
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-/****************************   tools methods    ******************************************/
-
-
-
 
 
 
@@ -483,7 +500,19 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
 
 //create dialog for multi selection function
 
-function create_multi_selection_dialog( year , month , daysInMonth , data ){
+function create_multi_selection_dialog(){
+
+
+    	//to get the value the user inter
+	const [year , month] = document.getElementById('pointage_month').value.split('-').map(Number);
+
+
+       	//month var is 0-indexed and when inter day as 0 it return the last day of the previous month  and since we inter the month not 0-indexed like jan ==> 1 so it will thought that 1 reffer to fiv and will return the last day in jav month.
+	const daysInMonth = new Date(year, month, 0).getDate();
+
+
+	data = mapping(all_employees , all_attendances);
+
 	/******************  prepare the dialog  ********************/
 	const dialog = new frappe.ui.Dialog({
 		title  : 'Pointage',
@@ -598,7 +627,7 @@ function create_multi_selection_dialog( year , month , daysInMonth , data ){
 					}).then(doc =>{
 						count += 1 ;
 						if(count == selected_box.length){
-							start_work()
+							fetchTableDataAndDrawIt()
 							dialog.hide();
 						}
 					}).catch(error =>{
@@ -664,7 +693,11 @@ function create_multi_selection_dialog( year , month , daysInMonth , data ){
 
 
 
-function setDefaultMonth(monthInput){
+function setDefaultMonth(){
+
+	//to get the value the user inter
+	const monthInput = document.getElementById('pointage_month');
+
 	const today = new Date();
 	const year  = today.getFullYear();
 	const month = String(today.getMonth() + 1).padStart(2,'0');
@@ -718,23 +751,28 @@ function getProjectIdByName( project_name){
 function selectItem(item){
 
 
+	console.log("selected Item : " , item )
+
 	const index = selected_box.findIndex(
-        	box => box.employee_id === item.employee_id && box.day === item.day
+        	box => (box.employee_id === item.employee_id && box.date === item.date)
 	);
 
 	if(index !== -1){
+		console.log("we find it in : " , index)
 		selected_box.splice(index,1);
 	}
 	else{
 		selected_box.push(item);
 	}
 
+	console.log("selected Item After Click : " , selected_box)
+
 }
 
 function box_exist(item){
 
         const index = selected_box.findIndex(
-                box => box.employee_id === item.employee_id && box.day === item.day
+                box => box.employee_id === item.employee_id && box.date === item.date
         );
 
 	if(index !== -1){ return true  }
