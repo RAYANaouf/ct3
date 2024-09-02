@@ -22,7 +22,7 @@ let departments_list = [];
 let projects_fetched = false;
 let departments_fetched = false;
 
-
+let selected_box = []
 
 function main(){
 
@@ -185,8 +185,15 @@ function generateTable( year , month , daysInMonth , data ) {
 				div.textContent = "Non";
 
 				td.addEventListener('click', function() {
-					create_dialog( year , month , daysInMonth , data , employee_id , year+"-"+month+"-"+day).show();
-                                });
+					//create_dialog( year , month , daysInMonth , data , employee_id , year+"-"+month+"-"+day).show();
+                                	if(box_exist({employee_id , day})){
+						td.classList.add('selectedBox')
+					}
+					else{
+						td.classList.remove('selectedBox')
+					}
+					selectItem({employee_id , day});
+				});
 				td.appendChild(div);
 				div.classList.add('empty');
 				tr.appendChild(td);
@@ -482,4 +489,33 @@ function mapping(employees , attendanceRecords){
 
 function getProjectIdByName( project_name){
 	return projects_list.find(proj => proj.project_name === project_name).name
+}
+
+
+
+//item = {employee_id : "" , day : ""}
+function selectItem(item){
+
+
+	const index = selected_box.findIndex(
+        	box => box.employee_id === item.employee_id && box.day === item.day
+	);
+
+	if(index !== -1){
+		selected_box.splice(index,1);
+	}
+	else{
+		selected_box.push(item);
+	}
+
+}
+
+function box_exist(item){
+
+        const index = selected_box.findIndex(
+                box => box.employee_id === item.employee_id && box.day === item.day
+        );
+
+	if(index !== -1){ return true  }
+	else { return false  }
 }
