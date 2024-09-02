@@ -133,6 +133,15 @@ function start_work(){
 
 
 
+
+
+
+
+
+
+/****************************   tools methods    ******************************************/
+
+
 	//generate table function
 function generateTable( year , month , daysInMonth , data ) {
 
@@ -159,7 +168,6 @@ function generateTable( year , month , daysInMonth , data ) {
     		th.textContent = day;
     		daysRow.appendChild(th);
 	}
-
 
 	Object.keys(data).forEach(employee_id =>{
 		const tr            = document.createElement('tr');
@@ -218,6 +226,7 @@ function generateTable( year , month , daysInMonth , data ) {
 				absent.textContent  = "A";
 				div.appendChild(absent);
 
+
 				div.classList.add('container');
 				div.classList.add('absent');
 				td.appendChild(div)
@@ -232,6 +241,10 @@ function generateTable( year , month , daysInMonth , data ) {
 
 }
 
+
+
+
+//////////  create dialog function
 
 
 function create_dialog( year , month , daysInMonth , data , employee_id , date){
@@ -250,6 +263,7 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
 
 					if(working_hours == 0 && heure_nuit == 0){
 						dialog.set_df_property('motif_jour','hidden',0)
+						dialog.set_value('motif_jour',"Congé sans solde")
 						dialog.set_df_property('lieu','hidden',1)
 						dialog.set_df_property('type','hidden',1)
 					}
@@ -271,6 +285,7 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
 
 					if(working_hours == 0 && heure_nuit == 0){
 						dialog.set_df_property('motif_jour','hidden',0)
+						dialog.set_value('motif_jour',"Congé sans solde")
 						dialog.set_df_property('lieu','hidden',1)
 						dialog.set_df_property('type','hidden',1)
 					}
@@ -323,8 +338,8 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
                 		label: "Motif jour",
                 		fieldname: "motif_jour",
 		                fieldtype: "Select",
-                		options: ["Congé sans solde","Congé annuel","Maladi","Récupeartion","Non validée","Absence Autorisée","Absence non Autorisée","Férié","Chomé payé","Formation", "Autre"],
-                		hidden: 1 // Initially hidden
+                		options  : ["Congé sans solde","Congé annuel","Maladi","Récupeartion","Non validée","Absence Autorisée","Absence non Autorisée","Férié","Chomé payé","Formation", "Autre"],
+				hidden: 1 // Initially hidden
             		}
 		],
 		size  : 'small',
@@ -334,12 +349,22 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
 
 			const status = (values.heure_nuit ==0 && values.heure_travaille == 0) ? 'Absent' : 'Present'
 
-			console.log("status" , status)
+			if(status == "Absent"){
+				frappe.db.insert({
+					doctype         : 'Attendance' ,
+					employee        : employee_id  ,
+					attendance_date : date         ,
+					status          : status       ,
+					custom_motif    : values.motif_jour
+				}).then(doc =>{
+					start_work()
+					dialog.hide();
+				}).catch(error =>{
+                	        	console.error("Failed to save the attendance" , error);
+					dialog.hide();
+                		})
 
-			if(values.lieu == "Projet"){
-
-				console.log("type is" , values.type )
-
+			}else if(values.lieu == "Projet"){
 				frappe.db.insert({
 					doctype         : 'Attendance' ,
 					employee        : employee_id  ,
@@ -347,7 +372,8 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
 					status          : status       ,
 					custom_heure_nuit : values.heure_nuit ,
 					working_hours     : values.heure_travaille,
-					custom_project    : getProjectIdByName(values.type)
+					custom_project    : getProjectIdByName(values.type),
+					custom_mission    : values.mission
 				}).then(doc =>{
 					start_work()
 					dialog.hide();
@@ -359,18 +385,17 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
 			}
 			else{
 
-				console.log("type is" , values.type )
 
 				frappe.db.insert({
-					doctype         : 'Attendance' ,
-					employee        : employee_id  ,
-					attendance_date : date         ,
-					status          : 'Present'    ,
+					doctype           : 'Attendance' ,
+					employee          : employee_id  ,
+					attendance_date   : date         ,
+					status            : 'Present'    ,
 					custom_heure_nuit : values.heure_nuit ,
 					working_hours     : values.heure_travaille,
-					custom_department : values.type
+					custom_department : values.type,
+					custom_mission    : values.mission
 				}).then(doc =>{
-					console.log("theeeeee docuuuuuuuuuuument" , doc )
 
 					start_work()
 					dialog.hide();
@@ -396,9 +421,6 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
 
 
 
-
-
-/****************************   tools methods    ******************************************/
 
 function setDefaultMonth(monthInput){
 	const today = new Date();
