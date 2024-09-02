@@ -109,7 +109,7 @@ function start_work(){
                 filters : {}
         }).then(employees =>{
 		frappe.db.get_list('Attendance' , {
-			fields  : ['employee' , 'employee_name' , 'attendance_date' , 'working_hours' , 'status' , 'leave_type' , 'in_time' , 'out_time' , 'custom_heure_nuit' , 'custom_project' , 'department' ],
+			fields  : ['employee' , 'employee_name' , 'attendance_date' , 'working_hours' , 'status' , 'custom_heure_nuit' , 'custom_project' ,'custom_department' , 'custom_motif' ],
                 	filters : {
             			attendance_date: ['between', [startDate, endDate]]
 			},
@@ -223,7 +223,21 @@ function generateTable( year , month , daysInMonth , data ) {
 			else{
 				const div      = document.createElement('div');
 				const absent   = document.createElement('div');
-				absent.textContent  = "A";
+				let   absent_text = ""
+					if(data[employee_id].attendances[day].motif == "Congé sans solde") absent_text = "C.S.S"
+					else if(data[employee_id].attendances[day].motif == "Congé annuel")  absent_text = "C.A"
+					else if(data[employee_id].attendances[day].motif == "Maladi")  absent_text = "M"
+					else if(data[employee_id].attendances[day].motif == "Récuperation")  absent_text = "Récup"
+					else if(data[employee_id].attendances[day].motif == "Non validée") absent_text = "N.V"
+					else if(data[employee_id].attendances[day].motif == "Absence Autorisée") absent_text = "A.A"
+					else if(data[employee_id].attendances[day].motif == "Absence non Autorisée") absent_text = "A.N.A"
+					else if(data[employee_id].attendances[day].motif == "Férié") absent_text = "Férié"
+					else if(data[employee_id].attendances[day].motif == "Chomé payé") absent_text = "C.P"
+					else if(data[employee_id].attendances[day].motif == "Formation") absent_text = "Form"
+					else if(data[employee_id].attendances[day].motif == "Autre") absent_text = "Autre"
+
+
+				absent.textContent  = absent_text;
 				div.appendChild(absent);
 
 
@@ -338,7 +352,7 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
                 		label: "Motif jour",
                 		fieldname: "motif_jour",
 		                fieldtype: "Select",
-                		options  : ["Congé sans solde","Congé annuel","Maladi","Récupeartion","Non validée","Absence Autorisée","Absence non Autorisée","Férié","Chomé payé","Formation", "Autre"],
+                		options  : ["Congé sans solde","Congé annuel","Maladi","Récuperation","Non validée","Absence Autorisée","Absence non Autorisée","Férié","Chomé payé","Formation", "Autre"],
 				hidden: 1 // Initially hidden
             		}
 		],
@@ -452,7 +466,8 @@ function mapping(employees , attendanceRecords){
 				working_hours : attendanceRecord.working_hours,
 				heure_nuit    : attendanceRecord.custom_heure_nuit,
 				project       : attendanceRecord.custom_project,
-				department    : attendanceRecord.department
+				department    : attendanceRecord.custom_department,
+				motif         : attendanceRecord.custom_motif
 			}
 		}
 	})
