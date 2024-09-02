@@ -17,12 +17,22 @@ frappe.pages['ct3_pointage_page'].on_page_load = function(wrapper) {
 
 
 
+
+
+let all_employees = []
+let all_attendances = []
+
 let projects_list = [];
 let departments_list = [];
 let projects_fetched = false;
 let departments_fetched = false;
 
 let selected_box = []
+
+
+
+
+
 
 function main(){
 
@@ -41,6 +51,20 @@ function main(){
    	});
 
 
+const pointage_btn = document.getElementById('pointage_btn')
+
+
+pointage_btn.addEventListener("click" , function(){
+	console.log("clickinnnn")
+	create_multi_selection_dialog( year , month , daysInMonth ,  mapping(all_employees , all_attendances) ).show()
+})
+
+const multi_select_mode = document.getElementById('multi_select_mode')
+	multi_select_mode.addEventListener("click" , function(){
+		generateTable(year , month , daysInMonth , mapping(all_employees , all_attendances))
+		selected_box = []
+		console.log("multi select mode : " , multi_select_mode.checked)
+	})
 
 
 	    /******************  Fetch Projects and Departments (only once)  ********************/
@@ -112,7 +136,7 @@ function start_work(){
 
 
 
-	const pointage_btn = document.getElementById('pointage_btn')
+
 
 
 
@@ -127,19 +151,9 @@ function start_work(){
 			},
 			limit   : 10000
 		}).then(attendancesRecords => {
+			all_employees = employees
+			all_attendances = attendancesRecords
 			console.log("all data between" , startDate , " and " , endDate , " here : " , attendancesRecords  )
-
-			pointage_btn.addEventListener("click" , function(){
-				create_multi_selection_dialog( year , month , daysInMonth ,  mapping(employees , attendancesRecords) ).show()
-			})
-
-			const multi_select_mode = document.getElementById('multi_select_mode')
-				multi_select_mode.addEventListener("click" , function(){
-				generateTable(year , month , daysInMonth , mapping(employees , attendancesRecords))
-				selected_box = []
-				console.log("multi select mode : " , multi_select_mode.checked)
-			})
-
 			generateTable(year , month , daysInMonth , mapping(employees , attendancesRecords));
 		}).catch(error =>{
 			console.error("Failed to fetch attendance" , error);
