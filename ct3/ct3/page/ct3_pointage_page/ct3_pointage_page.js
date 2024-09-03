@@ -637,44 +637,53 @@ function create_multi_selection_dialog(){
 				})
 
 			}else if(values.lieu == "Projet"){
-				/*frappe.db.insert({
-					doctype         : 'Attendance' ,
-					employee        : employee_id  ,
-					attendance_date : date         ,
-					status          : status       ,
-					custom_heure_nuit : values.heure_nuit ,
-					working_hours     : values.heure_travaille,
-					custom_project    : getProjectIdByName(values.type),
-					custom_mission    : values.mission
-				}).then(doc =>{
-					start_work()
-					dialog.hide();
-				}).catch(error =>{
-                	        	console.error("Failed to save the attendance" , error);
-					dialog.hide();
-                		})*/
+				selected_box.forEach(item =>{
+					frappe.db.insert({
+						doctype         : 'Attendance' ,
+						employee        : item.employee_id  ,
+						attendance_date : item.date         ,
+						status          : status       ,
+						custom_heure_nuit : values.heure_nuit ,
+						working_hours     : values.heure_travaille,
+						custom_project    : getProjectIdByName(values.type),
+						custom_mission    : values.mission
+					}).then(doc =>{
+						count += 1 ;
+						if(count == selected_box.length){
+							fetchTableDataAndDrawIt()
+							dialog.hide();
+						}
+					}).catch(error =>{
+                	        		console.error("Failed to save the attendance" , error);
+						dialog.hide();
+                			})
+				})
 
 			}
 			else{
 
+				selected_box.forEach(item =>{
+					frappe.db.insert({
+						doctype           : 'Attendance'      ,
+						employee          : item.employee_id  ,
+						attendance_date   : item.date         ,
+						status            : status            ,
+						custom_heure_nuit : values.heure_nuit ,
+						working_hours     : values.heure_travaille,
+						custom_department : values.type       ,
+						custom_mission    : values.mission
+					}).then(doc =>{
+						count += 1 ;
+						if(count == selected_box.length){
+							fetchTableDataAndDrawIt()
+							dialog.hide();
+						}
+					}).catch(error =>{
+                		        	console.error("Failed to save the attendance" , error);
+						dialog.hide();
+                		})
 
-				/*frappe.db.insert({
-					doctype           : 'Attendance' ,
-					employee          : employee_id  ,
-					attendance_date   : date         ,
-					status            : 'Present'    ,
-					custom_heure_nuit : values.heure_nuit ,
-					working_hours     : values.heure_travaille,
-					custom_department : values.type,
-					custom_mission    : values.mission
-				}).then(doc =>{
-
-					start_work()
-					dialog.hide();
-				}).catch(error =>{
-                	        	console.error("Failed to save the attendance" , error);
-					dialog.hide();
-                		})*/
+				})
 
 			}
 
