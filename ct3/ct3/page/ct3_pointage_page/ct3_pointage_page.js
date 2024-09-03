@@ -627,7 +627,8 @@ function create_multi_selection_dialog(){
 					}).then(doc =>{
 						count += 1 ;
 						if(count == selected_box.length){
-							fetchTableDataAndDrawIt()
+							selected_box = [];
+							fetchTableDataAndDrawIt();
 							dialog.hide();
 						}
 					}).catch(error =>{
@@ -650,6 +651,7 @@ function create_multi_selection_dialog(){
 					}).then(doc =>{
 						count += 1 ;
 						if(count == selected_box.length){
+							selected_box = [];
 							fetchTableDataAndDrawIt()
 							dialog.hide();
 						}
@@ -675,6 +677,7 @@ function create_multi_selection_dialog(){
 					}).then(doc =>{
 						count += 1 ;
 						if(count == selected_box.length){
+							selected_box = [];
 							fetchTableDataAndDrawIt()
 							dialog.hide();
 						}
