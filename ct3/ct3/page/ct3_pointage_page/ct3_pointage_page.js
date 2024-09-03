@@ -38,13 +38,12 @@ function main(){
 
 
 
-	/*const multi_select_mode = document.getElementById('multi_select_mode')
+	const multi_select_mode = document.getElementById('multi_select_mode')
 		multi_select_mode.addEventListener("click" , function(){
-			generateTable(year , month , daysInMonth , mapping(all_employees , all_attendances))
+			fetchTableDataAndDrawIt()
 			selected_box = []
-			console.log("multi select mode : " , multi_select_mode.checked)
 		})
-*/
+
 
 
 	    /******************  Fetch Projects and Departments (only once)  ********************/
