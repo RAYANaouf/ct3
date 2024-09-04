@@ -436,7 +436,7 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
 					status          : status       ,
 					custom_motif    : values.motif_jour
 				}).then(doc =>{
-					start_work()
+					fetchTableDataAndDrawIt();
 					dialog.hide();
 				}).catch(error =>{
                 	        	console.error("Failed to save the attendance" , error);
@@ -454,7 +454,7 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
 					custom_project    : getProjectIdByName(values.type),
 					custom_mission    : values.mission
 				}).then(doc =>{
-					start_work()
+					fetchTableDataAndDrawIt();
 					dialog.hide();
 				}).catch(error =>{
                 	        	console.error("Failed to save the attendance" , error);
@@ -475,8 +475,7 @@ function create_dialog( year , month , daysInMonth , data , employee_id , date){
 					custom_department : values.type,
 					custom_mission    : values.mission
 				}).then(doc =>{
-
-					start_work()
+					fetchTableDataAndDrawIt();
 					dialog.hide();
 				}).catch(error =>{
                 	        	console.error("Failed to save the attendance" , error);
